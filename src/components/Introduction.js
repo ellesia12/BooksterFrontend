@@ -1,14 +1,22 @@
 import React from 'react';
-import { Typography, Button } from '@material-ui/core';
+import { Typography, Button, Box } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
-    button: {
+    buttonPosition: {
         display: 'flex',
         justifyContent: 'center',
+        textAlign: 'center',
+        
 
     },
+
+    button: {
+        fontFamily: "'Oswald', sans-serif",
+    },
     text: {
+        textAlign: 'center',
+        fontFamily: "'Oswald', sans-serif",
 
     }
 })
@@ -19,13 +27,15 @@ const classes = useStyles();
 
     return(
     <div>
-        <Typography>
+        <Typography className={classes.text}>
         Create your own book club today and connect with friends and make new ones from anywhere in the world!
         </Typography>
-
-        <Button className={classes.button}>
+ 
+    <Box className={classes.buttonPosition}>
+        <Button className={classes.button} >
         Sign up!
         </Button>
+     </Box>
 
     </div>
 
