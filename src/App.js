@@ -15,14 +15,22 @@ function App() {
   return (
     <div className="App">
 
-     <Register />
-
+     
       <header>
 
       </header>
       <main>
           <Switch>
+
+              <Route
+              path="/LogIn">
+              <LogIn />
+              </Route>
               
+              <Route
+              path="/register">
+                <Register />
+              </Route>
                 
               <Route
                 exact

@@ -6,11 +6,14 @@ const font1 =  "'Alfa Slab One', cursive";
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: '#ffffcc',
+      main: '#718680',
     },
     secondary: {
-      main: '##a975a1',
+      main: '#b2837a',
     },
+    tertiary: {
+      main: '#fcd392'
+    }
   },
     typography: {
       fontFamily: font1,
