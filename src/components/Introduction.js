@@ -1,6 +1,7 @@
 import React from 'react';
 import { Typography, Button, Box } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import { NavLink } from 'react-router-dom';
 
 const useStyles = makeStyles({
     buttonPosition: {
@@ -32,9 +33,11 @@ const classes = useStyles();
         </Typography>
  
     <Box className={classes.buttonPosition}>
-        <Button className={classes.button} >
-        Sign up!
-        </Button>
+        <NavLink to='/register'>
+            <Button className={classes.button} >
+            Sign up!
+            </Button>
+        </NavLink>
      </Box>
 
     </div>

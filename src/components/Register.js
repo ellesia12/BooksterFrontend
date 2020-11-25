@@ -1,4 +1,5 @@
 import React from "react";
+import '../App.css';
 import { makeStyles, withStyles } from "@material-ui/core/styles"
 import { TextField, Typography, Button, Grid, Box} from "@material-ui/core";
 
@@ -36,7 +37,12 @@ const useStyles = makeStyles(theme=>({
     header: {
         textAlign: "center",
         textTransform:"uppercase",
-        marginBottom:"30px"
+        marginBottom:"30px",
+        fontFamily: "'Oswald', sans-serif",
+    },
+    text: {
+        fontFamily: "'Oswald', sans-serif",
+        
     }
 }))
 
@@ -51,7 +57,7 @@ const LogIn = () =>{
 
     return (
         <>
-            <Box component="div" style={{background:"#C38D9E", height:"100vh"}}>
+            <Box component="div" style={{background:"#C38D9E", height:"100vh"}} className={classes.text}>
                 <Grid container justify="center">
                     <Box component="form"  className={classes.form}>
                         <Typography variant="h3" className={classes.header}>
@@ -63,6 +69,7 @@ const LogIn = () =>{
                             margin="dense"
                             size="medium"
                             name="first_name"
+                            className={classes.text}
                         />
                         <br />
                         <InputField 
