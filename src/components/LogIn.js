@@ -56,7 +56,7 @@ const LogIn = () =>{
         password: ''
     })
 
-    const [userInfo, setUserInfo] = useState({})
+    const [userInfo, setUserInfo] = useState(null)
     const [loggedIn, setLoggedIn] = useState(false)
 
 
@@ -80,9 +80,10 @@ const LogIn = () =>{
                   console.log('bad')
                 
                 } else{
-                    setUserInfo(result.rows[0])
+                    setUserInfo(result)
                     console.log(userInfo)
                     setLoggedIn(true)
+
                 }
             })  
             /* .then((result)=> setUserInfo(result.rows[0]))
@@ -103,11 +104,7 @@ const LogIn = () =>{
         <>
             <Box component="div" style={{background:"#C38D9E", height:"100vh"}}>
                 <Grid container justify="center">
-  
-                     (
                     <Box component="form"  className={classes.form}>
-                       
-                        
                         <Typography variant="h3" className={classes.header}>
                             Log In Below
                         </Typography>
@@ -134,14 +131,13 @@ const LogIn = () =>{
                         <Button type="submit" onClick={handleLogin}  variant="contained" fullWidth={true} className={classes.button} >
                             Log In
                         </Button>
-                     {/*   {userInfo ?
-                        <Typography>Successful login!  Go to your profile {userInfo.first_name}
-                        </Typography> : <Typography>you are not logged in! log in or register for an account</Typography>}    
+                        {userInfo ? <Typography>Successful login!  Go to your profile {userInfo.first_name} </Typography> 
+                        : <Typography>you are not logged in! log in or register for an account</Typography>}    
                         
                         <Button   variant="contained" fullWidth={true} className={classes.button} >
                             Register for Bookster Here!
                         </Button>
-                         */}
+                       
                     </Box>         
                 </Grid>
            </Box>
