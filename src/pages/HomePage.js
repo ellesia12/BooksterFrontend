@@ -13,8 +13,8 @@ import NavBar from "../components/NavBar"
 const useStyles = makeStyles(theme => ({
    
     root: {
-        backgroundColor: '#718680',
-        height: "600px"
+        backgroundColor: 'white',
+        height: "300px"
     }
 
 
