@@ -10,45 +10,36 @@ import './App.css';
 import LogIn from "./components/LogIn"
 import Register from "./components/Register"
 
+import Profile from "./components/Profile"
 
-function App() {
+const App = () => {
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
   return (
-    <div className="App">
-
+  <>
      
-      <header>
-
-      </header>
-      <main>
           <Switch>
-
-              <Route
-              path="/LogIn">
-              <LogIn />
-              </Route>
               
-              <Route
-              path="/register">
+              <Route path="/login">
+                <LogIn />
+              </Route>
+              <Route path="/profile">
+                <Profile />
+              </Route>
+              <Route path="/register">
                 <Register />
               </Route>
-                
-              <Route
-                exact
-                path="/">
+              <Route exact path="/">
                 <HomePage /> 
               </Route>
-
-
           </Switch>
-
-
-
-      </main>
-      <footer>
-
-      </footer>
-
-    </div>
+</>
   );
 }
 
