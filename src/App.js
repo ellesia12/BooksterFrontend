@@ -9,7 +9,7 @@ import './App.css';
 // import components here
 import LogIn from "./components/LogIn"
 import Register from "./components/Register"
-
+import Search from "./components/Search"
 import Profile from "./components/Profile"
 
 const App = () => {
@@ -28,6 +28,9 @@ const App = () => {
               
               <Route path="/login">
                 <LogIn />
+              </Route>
+              <Route path="/search">
+                <Search />                
               </Route>
               <Route path="/profile">
                 <Profile />

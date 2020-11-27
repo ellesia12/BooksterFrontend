@@ -19,6 +19,7 @@ const classes = useStyles();
     return(
         <Box>
             <Typography className={classes.text} color="secondary"> How we work </Typography>
+            
         </Box>
 
     )
