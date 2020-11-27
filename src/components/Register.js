@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import '../App.css';
 import { makeStyles, withStyles } from "@material-ui/core/styles"
 import { TextField, Typography, Button, Grid, Box} from "@material-ui/core";
@@ -49,8 +49,45 @@ const useStyles = makeStyles(theme=>({
 
 
 
-const LogIn = () =>{
+
+
+
+
+const Register = () =>{
     const classes = useStyles();
+    const [registerData, setRegisterData] = useState({
+        first_name: '',
+        surname: '',
+        email: '',
+        password: '',
+        bio: '',
+        fav_book: ''
+    });
+
+const postOptions = {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({ registerData })
+}
+
+//or use registerData.field 
+
+
+
+
+const handleRegister = (e) =>{
+    e.preventDefault();
+    console.log(registerData)
+    fetch('http://localhost:3000/register', postOptions)
+        .then(response => response.json())
+        .then(data => console.log(data))
+        
+}
+
+const handleChange = (e) =>{
+    setRegisterData({...registerData, [e.target.name]: e.target.value })
+    
+}
 
 // need to add ONSUBMIT function 
 //add link to log in page
@@ -70,6 +107,8 @@ const LogIn = () =>{
                             size="medium"
                             name="first_name"
                             className={classes.text}
+                            value={registerData.first_name}
+                            onChange={handleChange}
                         />
                         <br />
                         <InputField 
@@ -78,6 +117,8 @@ const LogIn = () =>{
                             margin="dense"
                             size="medium"
                             name="surname"
+                            value={registerData.surname}
+                            onChange={handleChange}
                         />
                          <br />
                         <InputField 
@@ -86,6 +127,8 @@ const LogIn = () =>{
                             margin="dense"
                             size="medium"
                             name="email"
+                            value={registerData.email}
+                            onChange={handleChange}
                         />
                          <br />
                         <InputField 
@@ -94,22 +137,27 @@ const LogIn = () =>{
                             margin="dense"
                             size="medium"
                             name="password"
+                            value={registerData.password}
+                            onChange={handleChange}
+                            type="password"
                         />
                          <br />
-                        <InputField 
+                       {/*  <InputField 
                             label="Picture"
                             fullWidth={true}
                             margin="dense"
                             size="medium"
                             name="email"
                         />
-                        <br />
+                        <br /> */}
                         <InputField 
                             label="Short Bio About You"
                             fullWidth={true}
                             margin="dense"
                             size="medium"
                             name="bio"
+                            value={registerData.bio}
+                            onChange={handleChange}
                         />
                         <br />
                         <InputField 
@@ -117,14 +165,16 @@ const LogIn = () =>{
                             fullWidth={true}
                             margin="dense"
                             size="medium"
-                            name="books"
+                            name="fav_book"
+                            value={registerData.fav_book}
+                            onChange={handleChange}
                         />
                         <br />
-                        <Button type="submit" variant="contained" fullWidth={true} className={classes.button} >
+                        <Button type="submit" onClick={handleRegister} variant="contained" fullWidth={true} className={classes.button} >
                             Register
                         </Button>
                         <Typography alignContent="center">
-                            Already a user? Sign in <a href="/LogIn">here</a>
+                            Already a user? Sign in <a href="/login">here</a>
                         </Typography>
                     </Box>
                 </Grid>
@@ -136,5 +186,5 @@ const LogIn = () =>{
 
 
 
-export default LogIn;
+export default Register;
 

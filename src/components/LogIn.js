@@ -1,6 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles, withStyles } from "@material-ui/core/styles"
 import { TextField, Typography, Button, Grid, Box} from "@material-ui/core";
+
+import Profile from "./Profile";
+import { Redirect, Link, NavLink } from "react-router-dom";
+import BookShelf from "./BookShelf";
+
 
 const InputField = withStyles({
     root:{
@@ -46,13 +51,63 @@ const useStyles = makeStyles(theme=>({
 const LogIn = () =>{
     const classes = useStyles();
 
+    const [loginData, setLoginData] = useState({
+        email: '',
+        password: ''
+    })
+
+    const [userInfo, setUserInfo] = useState({})
+    const [loggedIn, setLoggedIn] = useState(false)
+
+
+    const postOptions = {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ loginData })
+    }
+
+
+
+
+    const handleLogin = (e) =>{
+        e.preventDefault();
+        // console.log(loginData)
+        fetch('http://localhost:3000/login', postOptions)
+            .then(response => response.json())
+            // .then(data => console.log(data))
+            .then((result, error)=>{
+                if(error === 'undefined') {
+                  console.log('bad')
+                
+                } else{
+                    setUserInfo(result.rows[0])
+                    console.log(userInfo)
+                    setLoggedIn(true)
+                }
+            })  
+            /* .then((result)=> setUserInfo(result.rows[0]))
+            .catch(error=>console.log(error)) */
+            // .then(result=> console.log(result.rows[0]))
+            
+        }
+
+
+
+    const handleChange = (e) =>{
+        setLoginData({...loginData, [e.target.name]: e.target.value })
+        
+    }
 // need to add ONSUBMIT function 
 
     return (
         <>
             <Box component="div" style={{background:"#C38D9E", height:"100vh"}}>
                 <Grid container justify="center">
+  
+                     (
                     <Box component="form"  className={classes.form}>
+                       
+                        
                         <Typography variant="h3" className={classes.header}>
                             Log In Below
                         </Typography>
@@ -61,7 +116,9 @@ const LogIn = () =>{
                             fullWidth={true}
                             margin="dense"
                             size="medium"
-                            name="name"
+                            name="email"
+                            value={loginData.email}
+                            onChange={handleChange}
                         />
                         <br />
                         <InputField 
@@ -69,14 +126,23 @@ const LogIn = () =>{
                             fullWidth={true}
                             margin="dense"
                             size="medium"
-                            name="email"
+                            name="password"
+                            value={loginData.password}
+                            onChange={handleChange}
                         />
                         
-                        <Button type="submit" variant="contained" fullWidth={true} className={classes.button} >
+                        <Button type="submit" onClick={handleLogin}  variant="contained" fullWidth={true} className={classes.button} >
                             Log In
                         </Button>
+                     {/*   {userInfo ?
+                        <Typography>Successful login!  Go to your profile {userInfo.first_name}
+                        </Typography> : <Typography>you are not logged in! log in or register for an account</Typography>}    
                         
-                    </Box>
+                        <Button   variant="contained" fullWidth={true} className={classes.button} >
+                            Register for Bookster Here!
+                        </Button>
+                         */}
+                    </Box>         
                 </Grid>
            </Box>
         </>
