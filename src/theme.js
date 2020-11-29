@@ -16,7 +16,11 @@ const theme = createMuiTheme({
     }
   },
     typography: {
-      fontFamily: font1,
+      fontFamily: "font1",
+      },
+    listItemText: {
+        fontFamily:"'Oswald', sans-serif",
+     
       }
 });
 
