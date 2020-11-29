@@ -2,7 +2,7 @@ import React, {useState} from "react";
 
 import { makeStyles, withStyles } from "@material-ui/core/styles"
 import { TextField, Typography, Button, Grid, Box} from "@material-ui/core";
-
+import { NavLink } from "react-router-dom";
 import axios from "axios";
 // import BookShelf from "./BookShelf";
 
@@ -13,7 +13,8 @@ const InputField = withStyles({
             color: "#DB5CA2"
         },
         "& label":{
-            color: "5CDB95"
+            color: "5CDB95",
+            fontFamily: "'Oswald', sans-serif"
         },
         "&:hover fieldSet":{
             borderColor: "5CDB95"
@@ -36,12 +37,21 @@ const useStyles = makeStyles(theme=>({
         marginTop: "1rem",
         color: "#C38D9E",
         borderColor: "white",
-        borderRadius: "18px"
+        borderRadius: "18px",
+        fontFamily:"'Oswald', sans-serif"
     },
     header: {
         textAlign: "center",
         textTransform:"uppercase",
-        marginBottom:"30px"
+        marginBottom:"30px",
+        fontFamily:"font1"
+    },
+    text:{
+        fontFamily: "'Oswald', sans-serif",
+        textAlign: "center"
+    },
+    link:{
+        textDecoration: "none"
     }
 }))
 
@@ -52,8 +62,10 @@ const useStyles = makeStyles(theme=>({
 
 
 
-const Search = () =>{
+const Search = ({props}) =>{
 const classes = useStyles();
+// const history = useHistory();
+
 const [query, setQuery] = useState('');
 const [results, setResults] =useState([])
 // const [book, setBook] =useState([]);
@@ -66,7 +78,7 @@ const handleSearch = (e) =>{
 const handleSubmit = (e) =>{
     e.preventDefault();
  
-    axios.get(`https://www.googleapis.com/books/v1/volumes?q=${query}&maxResults=5&startIndex=1&key=AIzaSyDXXOp7xMvzIDXxTNqgD3oqjh8o5ZlHXMw`)
+    axios.get(`https://www.googleapis.com/books/v1/volumes?q=${query}&maxResults=15&startIndex=1&key=AIzaSyDXXOp7xMvzIDXxTNqgD3oqjh8o5ZlHXMw`)
     
     .then(data =>{
         setResults(data.data.items)
@@ -81,13 +93,14 @@ const handleSubmit = (e) =>{
 
     return(
         <>
+        <Box>
             <Box component="div" style={{background:"#C38D9E", height:"100vh"}}>
                 <Grid container justify="center">
                     <Box component="form"  onSubmit={handleSubmit} className={classes.form}>
                         <Typography variant="h3" className={classes.header}>
                             What Book Are You Looking For?
                         </Typography>
-                        <Typography variant="h6" className={classes.header}>
+                        <Typography variant="h6" className={classes.text}>
                             You can search for a book based on title or author
                         </Typography>
                         <InputField 
@@ -106,15 +119,27 @@ const handleSubmit = (e) =>{
                         <Button type="submit" onSubmit={handleSubmit}  variant="contained" fullWidth={true} className={classes.button} >
                             Search
                         </Button>
-                    </Box>  
+                        <NavLink to="/bookshelf" className={classes.link}>
+                        <Button  variant="contained" fullWidth={true} className={classes.button} >
+                            Go To My Bookshelf
+                        </Button>
+                        </NavLink>
+                    </Box> 
                    
                 </Grid>
-                
-           </Box>
-           {results.map(book=> (<img src={book.volumeInfo.imageLinks.thumbnail} alt={book.title}/>))}       
-        </>
-    )
-}
+            </Box>   
+        <Grid style={{background:"#C38D9E"}} container justify="space-around" display="flex" flexwrap="wrap" >
+        {results.map((book)=> {return (
+            <div key={book.id}>
+                <img src={book.volumeInfo.imageLinks.thumbnail} alt={book.title}/>
+            </div>)
+                })} 
+        </Grid> 
+        
+    </Box>
+    </>
+    );
+};
 
 
 export default Search;

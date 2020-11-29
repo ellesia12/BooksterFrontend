@@ -3,7 +3,7 @@ import { makeStyles, withStyles } from "@material-ui/core/styles"
 import { TextField, Typography, Button, Grid, Box} from "@material-ui/core";
 
 import Profile from "./Profile";
-import { Redirect, Link, NavLink } from "react-router-dom";
+import { Redirect, Link, NavLink, useHistory } from "react-router-dom";
 import BookShelf from "./BookShelf";
 
 
@@ -13,7 +13,8 @@ const InputField = withStyles({
             color: "#DB5CA2"
         },
         "& label":{
-            color: "5CDB95"
+            color: "5CDB95",
+            fontFamily:"'Oswald', sans-serif"
         },
         "&:hover fieldSet":{
             borderColor: "5CDB95"
@@ -36,20 +37,27 @@ const useStyles = makeStyles(theme=>({
         marginTop: "1rem",
         color: "#C38D9E",
         borderColor: "white",
-        borderRadius: "18px"
+        borderRadius: "18px",
+        fontFamily:"'Oswald', sans-serif"
     },
     header: {
         textAlign: "center",
         textTransform:"uppercase",
-        marginBottom:"30px"
+        marginBottom:"30px",
+        fontFamily: "font1"
+    },
+    word: {
+        fontFamily:"'Oswald', sans-serif"
     }
 }))
 
 
 
 
-const LogIn = () =>{
+const LogIn = ({props}) =>{
+
     const classes = useStyles();
+    const history = useHistory();
 
     const [loginData, setLoginData] = useState({
         email: '',
@@ -83,6 +91,7 @@ const LogIn = () =>{
                     setUserInfo(result)
                     console.log(userInfo)
                     setLoggedIn(true)
+                    history.push("/search")
 
                 }
             })  
@@ -131,8 +140,8 @@ const LogIn = () =>{
                         <Button type="submit" onClick={handleLogin}  variant="contained" fullWidth={true} className={classes.button} >
                             Log In
                         </Button>
-                        {userInfo ? <Typography>Successful login!  Go to your profile {userInfo.first_name} </Typography> 
-                        : <Typography>you are not logged in! log in or register for an account</Typography>}    
+                        {userInfo ? <Typography className={classes.word}>Successful login!  Go to your profile {userInfo.first_name} </Typography> 
+                        : <Typography className={classes.word}>you are not logged in! log in or register for an account</Typography>}    
                         
                         <Button   variant="contained" fullWidth={true} className={classes.button} >
                             Register for Bookster Here!

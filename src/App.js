@@ -11,6 +11,8 @@ import LogIn from "./components/LogIn"
 import Register from "./components/Register"
 import Search from "./components/Search"
 import Profile from "./components/Profile"
+import BookShelf from "./components/BookShelf"
+
 
 const App = () => {
  
@@ -25,13 +27,16 @@ const App = () => {
   <>
      
           <Switch>
-              
+
+              <Route path="/bookshelf"
+                render={(props)=>(<BookShelf {...props}/>)}            
+              />
               <Route path="/login">
                 <LogIn />
               </Route>
-              <Route path="/search">
-                <Search />                
-              </Route>
+              <Route path="/search"
+                render={(props)=>(<Search {...props}/>)}            
+              />
               <Route path="/profile">
                 <Profile />
               </Route>
@@ -41,6 +46,7 @@ const App = () => {
               <Route exact path="/">
                 <HomePage /> 
               </Route>
+
           </Switch>
 </>
   );

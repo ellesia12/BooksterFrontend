@@ -29,13 +29,11 @@ const useStyles = makeStyles(theme => ({
         marginBottom: `5%`,
         outlineColor: `black`,
         padding: '5px'
-        
       },
-    
       cardHeader: {
           fontWeight: `bold`,
           color: `black`,
-          fontFamily: "'Oswald', sans-serif",
+          fontFamily:"'Oswald', sans-serif",
       },
       media: {
         width: '100%',
@@ -43,6 +41,9 @@ const useStyles = makeStyles(theme => ({
         paddingTop: '56.25%', // 16:9
         
       },
+      box:{
+          paddingBottom: "40px"
+      }
       
   
 }))
@@ -53,73 +54,62 @@ const classes = useStyles();
 
     return(
     <>
-
-     <Box className={classes.box}>
-            <Typography className={classes.text} color="secondary"> How we work </Typography>
+        <Box className={classes.container}>
+        <Box className={classes.box}>
+            <Typography className={classes.text} color="secondary" variant="h3"> HOW WE WORK</Typography>
         </Box>
-<Grid className={classes.gridPosition}>
-    <Card className={classes.root}>
-      <CardHeader
-        title="Step 1"
-        className={classes.cardHeader}
-      />
-        
-       <CardMedia
-        className={classes.media}
-        image={stepOne}
-       />
-      
-       <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p">
-         Sign up for Bookster using your email address
-        </Typography>
-        
-       </CardContent>
-      </Card>
-       
-        <Card className={classes.root}>
-      <CardHeader
-        title="Step 2"
-        className={classes.cardHeader}
-        fontFamily="'Oswald', sans-serif">
-       </CardHeader>
-        
-       <CardMedia
-        className={classes.media}
-        image={stepTwo}
-       />
-      
-       <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p">
-         Search for you favorite books and add them into your very own bookshelf.
-        </Typography>
-        
-       </CardContent>
-      </Card>
-      <Card className={classes.root}>
-      <CardHeader
-        title="Step 3"
-        className={classes.cardHeader}
-      />
-        
-       <CardMedia
-        className={classes.media}
-        image={stepThree}
-       />
-      
-       <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p">
-         Join bookclubs and meet new people from around the world.
-        </Typography>
-        
-       </CardContent>
-      </Card>
-</Grid>
-        
-        
+        </Box>
+        <Grid className={classes.gridPosition}>
+            <Card className={classes.root}>
+                <CardHeader
+                    title="Step 1"
+                    className={classes.cardHeader}
+                /> 
+                <CardMedia
+                    className={classes.media}
+                    image={stepOne}
+                />
+                <CardContent>
+                    <Typography variant="body2" color="textSecondary" component="p" className={classes.text}>
+                        Sign up for Bookster using your email address
+                    </Typography> 
+                </CardContent>
+            </Card>
+            <Card className={classes.root}>
+                <CardHeader
+                    title="Step 2"
+                    className={classes.cardHeader}
+                    fontFamily="'Oswald', sans-serif">
+                </CardHeader>
+                <CardMedia
+                    className={classes.media}
+                    image={stepTwo}
+                />
+                <CardContent>
+                    <Typography variant="body2" color="textSecondary" component="p" className={classes.text}>
+                        Search for you favorite books and add them into your very own bookshelf.
+                    </Typography>
+                </CardContent>
+            </Card>
+            <Card className={classes.root}>
+                <CardHeader
+                    title="Step 3"
+                    className={classes.cardHeader}
+                />
+                <CardMedia
+                    className={classes.media}
+                    image={stepThree}
+                />
+                <CardContent>
+                    <Typography variant="body2" color="textSecondary" component="p" className={classes.text}>
+                        Join bookclubs and meet new people from around the world.
+                    </Typography>
+                </CardContent>
+            </Card>
+    </Grid>
     </>
 
-    )
-}
+    );
+};
 
 export default HowItWorks;
