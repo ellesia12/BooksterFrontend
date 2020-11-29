@@ -7,7 +7,8 @@ import bookshelf from "../Images/idealbookshelf.jpg";
 const useStyles = makeStyles({
     
     position: {
-        display: 'flex'
+        display: 'flex',
+        paddingBottom:"70px"
     },
    
     buttonPosition: {

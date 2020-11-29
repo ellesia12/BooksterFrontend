@@ -9,7 +9,8 @@ const InputField = withStyles({
             color: "#DB5CA2"
         },
         "& label":{
-            color: "5CDB95"
+            color: "5CDB95",
+            fontFamily:"'Oswald', sans-serif"
         },
         "&:hover fieldSet":{
             borderColor: "5CDB95"
@@ -32,17 +33,21 @@ const useStyles = makeStyles(theme=>({
         marginTop: "1rem",
         color: "#C38D9E",
         borderColor: "white",
-        borderRadius: "18px"
+        borderRadius: "18px",
+        fontFamily:"'Oswald', sans-serif"
     },
     header: {
         textAlign: "center",
         textTransform:"uppercase",
         marginBottom:"30px",
-        fontFamily: "'Oswald', sans-serif",
+        fontFamily: "font1",
     },
     text: {
         fontFamily: "'Oswald', sans-serif",
         
+    },
+    word: {
+        fontFamily:"'Oswald', sans-serif"
     }
 }))
 
@@ -173,7 +178,7 @@ const handleChange = (e) =>{
                         <Button type="submit" onClick={handleRegister} variant="contained" fullWidth={true} className={classes.button} >
                             Register
                         </Button>
-                        <Typography alignContent="center">
+                        <Typography alignContent="center" className={classes.word}>
                             Already a user? Sign in <a href="/login">here</a>
                         </Typography>
                     </Box>
