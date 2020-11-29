@@ -1,7 +1,10 @@
 import React, {useState} from "react";
+import { Link } from "react-router-dom";
 
-import { makeStyles, withStyles } from "@material-ui/core/styles"
+import { makeStyles, withStyles } from "@material-ui/core/styles";
 import { TextField, Typography, Button, Grid, Box} from "@material-ui/core";
+
+import BookCard from "./BookCard"
 
 import axios from "axios";
 // import BookShelf from "./BookShelf";
@@ -46,12 +49,6 @@ const useStyles = makeStyles(theme=>({
 }))
 
 
-
-
-
-
-
-
 const Search = () =>{
 const classes = useStyles();
 const [query, setQuery] = useState('');
@@ -70,7 +67,7 @@ const handleSubmit = (e) =>{
     
     .then(data =>{
         setResults(data.data.items)
-        console.log(data.data.items)
+        // console.log(data.data.items)
     })
     .catch(err=>{
         console.log(err.res)
@@ -109,12 +106,18 @@ const handleSubmit = (e) =>{
                     </Box>  
                    
                 </Grid>
-                
+        
            </Box>
-           {results.map(book=> (<img src={book.volumeInfo.imageLinks.thumbnail} alt={book.title}/>))}       
+
+           
+           {results.map((book) => {return (
+            <BookCard results={book} /> 
+           
+            
+           )})}
         </>
-    )
-}
+           )
+           }
 
 
 export default Search;

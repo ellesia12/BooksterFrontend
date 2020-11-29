@@ -11,6 +11,7 @@ import LogIn from "./components/LogIn"
 import Register from "./components/Register"
 import Search from "./components/Search"
 import Profile from "./components/Profile"
+import BookCard from "./components/BookCard"
 
 const App = () => {
  
@@ -26,6 +27,9 @@ const App = () => {
      
           <Switch>
               
+              <Route path="/bookDetail">
+                <BookCard />
+              </Route>
               <Route path="/login">
                 <LogIn />
               </Route>
