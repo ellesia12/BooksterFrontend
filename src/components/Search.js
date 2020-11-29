@@ -1,8 +1,15 @@
 import React, {useState} from "react";
+import { Link } from "react-router-dom";
 
-import { makeStyles, withStyles } from "@material-ui/core/styles"
+import { makeStyles, withStyles } from "@material-ui/core/styles";
 import { TextField, Typography, Button, Grid, Box} from "@material-ui/core";
+
+
+import BookCard from "./BookCard"
+
+
 import { NavLink } from "react-router-dom";
+
 import axios from "axios";
 // import BookShelf from "./BookShelf";
 
@@ -62,7 +69,9 @@ const useStyles = makeStyles(theme=>({
 
 
 
+
 const Search = ({props}) =>{
+
 const classes = useStyles();
 // const history = useHistory();
 
@@ -82,7 +91,7 @@ const handleSubmit = (e) =>{
     
     .then(data =>{
         setResults(data.data.items)
-        console.log(data.data.items)
+        // console.log(data.data.items)
     })
     .catch(err=>{
         console.log(err.res)
@@ -127,19 +136,28 @@ const handleSubmit = (e) =>{
                     </Box> 
                    
                 </Grid>
+
+        
+           </Box>
+
+           
+           {results.map((book) => {return (
+            <BookCard results={book} /> 
+           
+            
+           )})}
+        </>
+           )
+           }
+
             </Box>   
-        <Grid style={{background:"#C38D9E"}} container justify="space-around" display="flex" flexwrap="wrap" >
-        {results.map((book)=> {return (
-            <div key={book.id}>
-                <img src={book.volumeInfo.imageLinks.thumbnail} alt={book.title}/>
-            </div>)
-                })} 
-        </Grid> 
+        
         
     </Box>
     </>
     );
 };
+
 
 
 export default Search;
