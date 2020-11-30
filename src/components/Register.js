@@ -60,6 +60,8 @@ const useStyles = makeStyles(theme=>({
 
 const Register = () =>{
     const classes = useStyles();
+    
+    
     const [registerData, setRegisterData] = useState({
         first_name: '',
         surname: '',
@@ -85,8 +87,7 @@ const handleRegister = (e) =>{
     console.log(registerData)
     fetch('http://localhost:3000/register', postOptions)
         .then(response => response.json())
-        .then(data => console.log(data))
-        
+        .then(data => console.log(data))     
 }
 
 const handleChange = (e) =>{

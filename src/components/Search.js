@@ -91,7 +91,7 @@ const handleSubmit = (e) =>{
     
     .then(data =>{
         setResults(data.data.items)
-        // console.log(data.data.items)
+        /* console.log(data.data.items) */
     })
     .catch(err=>{
         console.log(err.res)
@@ -143,20 +143,12 @@ const handleSubmit = (e) =>{
            
            {results.map((book) => {return (
             <BookCard results={book} /> 
-           
-            
            )})}
-        </>
-           )
-           }
-
-            </Box>   
-        
-        
     </Box>
     </>
-    );
-};
+  )
+}
+
 
 
 
