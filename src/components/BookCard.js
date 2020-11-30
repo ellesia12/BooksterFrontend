@@ -8,38 +8,54 @@ import { Card, CardMedia, CardContent, CardHeader, Button } from "@material-ui/c
 
 
 
-const BookCard = ({ results }) => {
+const BookCard = ({ book }) => {
 	
 	
 	
-const [bookData, setBookData] = useState({
+/* const [bookData, setBookData] = useState({
 	title: '',
 	thumbnail: '',
 	synopsis: '',
 	author: '',
 	googleid: ''
-});
+}); */
 
-const postOptions = {
+/* const postOptions = {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({ bookData })
 }
+ */
 
 const handleAddBooks = (e) =>{
 	e.preventDefault();
-	setBookData({...results})
-	console.log(bookData)
+
+	const bookData = {
+		title: book.volumeInfo.title ,
+		thumbnail: book.volumeInfo.imageLinks.thumbnail,
+		synopsis: book.volumeInfo.description,
+		author: book.volumeInfo.authors,
+		googleid: book.id
+
+	}
+	
+	fetch('http://localhost:3000/books', {
+		method: 'POST',
+		headers: {'Content-Type': 'application/json'},
+		body: JSON.stringify({ bookData })
+	})
+	.then(response => response.json())
+	.then(data => console.log(data))
 }
+
 
 	
 	return(
 	
-        // {results.length >= 1 &&
-        //     results.map((result, index) => (
+       
             <>
-           <img src={results.volumeInfo.imageLinks.thumbnail} alt={results.title}/>
-           <p>{results.volumeInfo.authors}</p>
+           <img src={book.volumeInfo.imageLinks.thumbnail} alt={book.title}/>
+           <p>{book.volumeInfo.authors}</p>
 		   <Button type="submit"  variant="contained" onClick={handleAddBooks}>Save to MyBooks</Button>
            <Card className="card">
 				
