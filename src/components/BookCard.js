@@ -100,36 +100,14 @@ const classes = useStyles();
 
 	
 	return(
-	
-       
-           <>
-           <img src={book.volumeInfo.imageLinks.thumbnail} alt={book.title}/>
-           <p>{book.volumeInfo.authors}</p>
-		   <Button type="submit"  variant="contained" onClick={handleAddBooks}>Save to MyBooks</Button>
-           <Card className="card">
-				
-					<CardHeader className="bookTitle">{}</CardHeader>
-					<CardContent className="synposis">
-						{}
-					</CardContent>
-                    <CardMedia
-					variant="top"
-					src={image}
-					alt="Card image cap"
-				   />
-				<CardContent>
-				</CardContent>
-			</Card>
-        </>
-
-  return (
-    <div>
+		
+         <div className={classes.bookGrid}>
 <Box className={classes.bookDisplay}>
-	<img src={results.volumeInfo.imageLinks.thumbnail} alt={results.title}/>
-      <button type="button" variant="contained" onClick={handleOpen}>
+    <img src={book.volumeInfo.imageLinks.thumbnail} alt={book.title}/>
+      <button type="button" variant="contained" onClick={handleOpen} className={classes.readMore}>
         Read more
       </button>
-	  <Button type="submit"  variant="contained" onClick={handleAddBooks}>Save to MyBooks</Button>
+      <Button type="submit"  variant="contained" onClick={handleAddBooks} className={classes.saveBooks}>Save to MyBooks</Button>
 </Box>
       <Modal
         aria-labelledby="spring-modal-title"
@@ -146,16 +124,16 @@ const classes = useStyles();
         <Fade in={open}>
         <Card>
           <div className={classes.paper}>
-		  	<p>{results.volumeInfo.title}</p>
-			<img src={results.volumeInfo.imageLinks.thumbnail} alt={results.title}/>
-    //        <p>By {results.volumeInfo.authors}</p>
-	        <br />
-			<p>{results.volumeInfo.description}</p>
+              <p className={classes.bookTitle}>{book.volumeInfo.title}</p>
+            <img src={book.volumeInfo.imageLinks.thumbnail} alt={book.title} width="250px" className={classes.bookImage}/>
+            <p alignText='center'>By {book.volumeInfo.authors}</p>
+            <br />
+            <p className={classes.bookDescription}>{book.volumeInfo.description}</p>
           </div>
         </Card>
         </Fade>
       </Modal>
-    </div>
+    </div>  
   );
 }
 
