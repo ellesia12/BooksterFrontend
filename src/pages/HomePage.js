@@ -8,6 +8,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 // import components
 import NavBar from "../components/NavBar"
+import Footer from "../components/Footer"
 
 
 const useStyles = makeStyles(theme => ({
@@ -28,6 +29,7 @@ const classes = useStyles();
             <NavBar />
             <Introduction />
             <HowItWorks />
+            <Footer />
         </div>
 
     )

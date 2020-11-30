@@ -141,8 +141,8 @@ const handleSubmit = (e) =>{
            </Box>
 
            
-           {results.map((book) => {return (
-            <BookCard results={book} /> 
+           {results && results.map((book) => {return (
+            <BookCard book={book} /> 
            )})}
     </Box>
     </>
