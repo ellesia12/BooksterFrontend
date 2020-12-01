@@ -101,7 +101,7 @@ const classes = useStyles();
 // const history = useHistory();
 
 const [query, setQuery] = useState('');
-const [results, setResults] =useState([])
+const [results, setResults] =useState(null)
 // const [book, setBook] =useState([]);
 
 const handleSearch = (e) =>{
@@ -167,7 +167,10 @@ const handleSubmit = (e) =>{
            </Box>
 
            <Box className={classes.flex}>
-           {results && results.map((book) => {return (
+           {results && results.map((book) => {
+               console.log(book)
+               
+               return (
             <BookCard book={book} />
            )})}
            </Box>

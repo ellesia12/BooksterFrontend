@@ -104,44 +104,46 @@ const classes = useStyles();
   };
 
 
+return (
+	<>
+	{book && book.volumeInfo && book.volumeInfo.imageLinks ? <div className={classes.bookGrid}>
+	<Box className={classes.bookDisplay}>
+		<img src={book.volumeInfo.imageLinks.thumbnail} alt={book.title}/>
+		  <button type="button" variant="contained" onClick={handleOpen} className={classes.button}>
+			Read more
+		  </button>
+		  <Button type="submit"  variant="contained" onClick={handleAddBooks} className={classes.button}>Save to MyBooks</Button>
+	</Box>
+		  <Modal
+			aria-labelledby="spring-modal-title"
+			aria-describedby="spring-modal-description"
+			className={classes.modal}
+			open={open}
+			onClose={handleClose}
+			closeAfterTransition
+			BackdropComponent={Backdrop}
+			BackdropProps={{
+			  timeout: 500,
+			}}
+		  >
+			<Fade in={open}>
+			<Card>
+			  <div className={classes.paper}>
+				  <p className={classes.bookTitle}>{book.volumeInfo.title}</p>
+				<img src={book.volumeInfo.imageLinks.thumbnail} alt={book.title} width="250px" className={classes.bookImage}/>
+				<p alignText='center'>By {book.volumeInfo.authors}</p>
+				<br />
+				<p className={classes.bookDescription}>{book.volumeInfo.description}</p>
+			  </div>
+			</Card>
+			</Fade>
+		  </Modal>
+		</div> : null} 
+		</>
 
-	
-	return(
-		
-<div className={classes.bookGrid}>
-<Box className={classes.bookDisplay}>
-    <img src={book.volumeInfo.imageLinks.thumbnail} alt={book.title}/>
-      <button type="button" variant="contained" onClick={handleOpen} className={classes.button}>
-        Read more
-      </button>
-      <Button type="submit"  variant="contained" onClick={handleAddBooks} className={classes.button}>Save to MyBooks</Button>
-</Box>
-      <Modal
-        aria-labelledby="spring-modal-title"
-        aria-describedby="spring-modal-description"
-        className={classes.modal}
-        open={open}
-        onClose={handleClose}
-        closeAfterTransition
-        BackdropComponent={Backdrop}
-        BackdropProps={{
-          timeout: 500,
-        }}
-      >
-        <Fade in={open}>
-        <Card>
-          <div className={classes.paper}>
-              <p className={classes.bookTitle}>{book.volumeInfo.title}</p>
-            <img src={book.volumeInfo.imageLinks.thumbnail} alt={book.title} width="250px" className={classes.bookImage}/>
-            <p alignText='center'>By {book.volumeInfo.authors}</p>
-            <br />
-            <p className={classes.bookDescription}>{book.volumeInfo.description}</p>
-          </div>
-        </Card>
-        </Fade>
-      </Modal>
-    </div>  
-  );
+)
+
+
 }
 
 
