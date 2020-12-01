@@ -45,20 +45,43 @@ const useStyles = makeStyles(theme=>({
         color: "#C38D9E",
         borderColor: "white",
         borderRadius: "18px",
-        fontFamily:"'Oswald', sans-serif"
+        fontFamily:"'Oswald', sans-serif",
+        width: '150px',
+        
     },
     header: {
         textAlign: "center",
         textTransform:"uppercase",
         marginBottom:"30px",
-        fontFamily:"font1"
+        fontFamily:"font1",
+        color:"#fcd392"
     },
     text:{
         fontFamily: "'Oswald', sans-serif",
-        textAlign: "center"
+        textAlign: "center",
+        // color:"#fcd392"
     },
     link:{
         textDecoration: "none"
+    },
+    flex: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        padding: '10px',
+        alignContent: 'space-around',
+        justifyContent:'space-around'
+    },
+    divs: {
+        border: '1px solid black',
+        padding: '5px',
+        margin: '5px'
+
+    },
+    buttonflex:{
+        display: 'flex',
+        flexDirection: 'column',
+       
+        alignContent:'center'
     }
 }))
 
@@ -87,7 +110,7 @@ const handleSearch = (e) =>{
 const handleSubmit = (e) =>{
     e.preventDefault();
  
-    axios.get(`https://www.googleapis.com/books/v1/volumes?q=${query}&maxResults=15&startIndex=1&key=AIzaSyDXXOp7xMvzIDXxTNqgD3oqjh8o5ZlHXMw`)
+    axios.get(`https://www.googleapis.com/books/v1/volumes?q=${query}&maxResults=18&startIndex=1&key=AIzaSyDXXOp7xMvzIDXxTNqgD3oqjh8o5ZlHXMw`)
     
     .then(data =>{
         setResults(data.data.items)
@@ -103,7 +126,7 @@ const handleSubmit = (e) =>{
     return(
         <>
         <Box>
-            <Box component="div" style={{background:"#C38D9E", height:"100vh"}}>
+            <Box component="div" style={{background:"#718680", height:"100vh"}}>
                 <Grid container justify="center">
                     <Box component="form"  onSubmit={handleSubmit} className={classes.form}>
                         <Typography variant="h3" className={classes.header}>
@@ -124,15 +147,16 @@ const handleSubmit = (e) =>{
                             autoComplete="off"
                         />
                         <br />
-                     
-                        <Button type="submit" onSubmit={handleSubmit}  variant="contained" fullWidth={true} className={classes.button} >
-                            Search
-                        </Button>
-                        <NavLink to="/bookshelf" className={classes.link}>
-                        <Button  variant="contained" fullWidth={true} className={classes.button} >
-                            Go To My Bookshelf
-                        </Button>
-                        </NavLink>
+                      
+                            <Button type="submit" onSubmit={handleSubmit}  variant="contained"  className={classes.button} >
+                                Search
+                            </Button>
+                            <NavLink to="/bookshelf" className={classes.link}>
+                                <Button  variant="contained"  className={classes.button} >
+                                Go To My Bookshelf
+                            </Button>
+                            </NavLink>
+                 
                     </Box> 
                    
                 </Grid>
@@ -140,10 +164,13 @@ const handleSubmit = (e) =>{
         
            </Box>
 
-           
+           <Box className={classes.flex}>
            {results && results.map((book) => {return (
-            <BookCard book={book} /> 
+           
+            <BookCard book={book} />
+          
            )})}
+           </Box>
     </Box>
     </>
   )
