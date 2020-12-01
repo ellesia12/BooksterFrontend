@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles, withStyles } from "@material-ui/core/styles"
 import { TextField, Typography, Button, Grid, Box} from "@material-ui/core";
 
 import Profile from "./Profile";
 import { Redirect, Link, NavLink, useHistory } from "react-router-dom";
 import BookShelf from "./BookShelf";
-
+import Cookies from "js-cookie"
 
 const InputField = withStyles({
     root:{
@@ -68,44 +68,63 @@ const LogIn = ({props}) =>{
     const [loggedIn, setLoggedIn] = useState(false)
 
 
-    const postOptions = {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({ loginData })
-    }
-
 
 
 
     const handleLogin = (e) =>{
         e.preventDefault();
-        // console.log(loginData)
-        fetch('http://localhost:3000/login', postOptions)
-            .then(response => response.json())
-            // .then(data => console.log(data))
-            .then((result, error)=>{
-                if(error === 'undefined') {
-                  console.log('bad')
-                
-                } else{
-                    setUserInfo(result)
-                    console.log(userInfo)
-                    setLoggedIn(true)
-                    history.push("/search")
+        
+    const postOptions = {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ loginData })
+    }
+        let token
 
-                }
-            })  
+        fetch('http://localhost:3000/login', postOptions)
+        .then(
+            (response) => {
+                token = response.headers.get('x-secret-token')
+              if (response.ok) return response.json();
+              throw new Error("Network Error while fetching quote");
+            },
+            (networkError) => {
+              console.log(networkError.message);
+            }
+          )
+          .then((data) => {
+              console.log(data)
+            Cookies.set('Bookster', token);
+            setUserInfo(data[0])
+            
+          })
+          .catch((e) => console.log(e.message));
             /* .then((result)=> setUserInfo(result.rows[0]))
             .catch(error=>console.log(error)) */
             // .then(result=> console.log(result.rows[0]))
             
         }
 
+useEffect(()=> {
+    if (userInfo){
+    const postOptions = {
+        method: 'POST',
+        headers: {'Authorization': `Bearer ${Cookies.get('Bookster')}`},
+        
+    }
+    
+    fetch('http://localhost:3000/login/me', postOptions)
+    .then(res=> res.json())
+    .then(data=>console.log(data))
+    }
+    
+
+},[userInfo])
+
 
 
     const handleChange = (e) =>{
         setLoginData({...loginData, [e.target.name]: e.target.value })
-        
     }
 // need to add ONSUBMIT function 
 
