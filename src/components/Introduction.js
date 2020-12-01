@@ -43,6 +43,7 @@ return(
 
        
 <Box className={classes.textAndButton}>
+        <Typography variant="h2" className={classes.text}>Bookster.</Typography>
         <Typography className={classes.text}>
         Create your own book club today and connect 
         <br />

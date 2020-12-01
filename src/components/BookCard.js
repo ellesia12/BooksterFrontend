@@ -21,6 +21,13 @@ const useStyles = makeStyles((theme) => ({
 		flexDirection: 'column',
 		justifyContnet: "center",
 		width: '150px'
+	},
+	button: {
+        marginTop: "1rem",
+        color: "#C38D9E",
+        borderColor: "white",
+        borderRadius: "18px",
+        fontFamily:"'Oswald', sans-serif"
 	}
   }));
   
@@ -67,10 +74,10 @@ const handleAddBooks = (e) =>{
 	e.preventDefault();
 
 	const bookData = {
-		title: book.volumeInfo.title ,
+		title: book.volumeInfo.title,
 		thumbnail: book.volumeInfo.imageLinks.thumbnail,
 		synopsis: book.volumeInfo.description,
-		author: book.volumeInfo.authors,
+		author: book.volumeInfo.authors[0],
 		googleid: book.id
 
 	}
@@ -101,13 +108,13 @@ const classes = useStyles();
 	
 	return(
 		
-         <div className={classes.bookGrid}>
+<div className={classes.bookGrid}>
 <Box className={classes.bookDisplay}>
     <img src={book.volumeInfo.imageLinks.thumbnail} alt={book.title}/>
-      <button type="button" variant="contained" onClick={handleOpen} className={classes.readMore}>
+      <button type="button" variant="contained" onClick={handleOpen} className={classes.button}>
         Read more
       </button>
-      <Button type="submit"  variant="contained" onClick={handleAddBooks} className={classes.saveBooks}>Save to MyBooks</Button>
+      <Button type="submit"  variant="contained" onClick={handleAddBooks} className={classes.button}>Save to MyBooks</Button>
 </Box>
       <Modal
         aria-labelledby="spring-modal-title"
