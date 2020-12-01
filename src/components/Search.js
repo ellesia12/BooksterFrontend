@@ -42,11 +42,12 @@ const useStyles = makeStyles(theme=>({
     },
     button: {
         marginTop: "1rem",
-        color: "#C38D9E",
+        color: "black",
         borderColor: "white",
         borderRadius: "18px",
         fontFamily:"'Oswald', sans-serif",
-        width: '150px',
+        backgroundColor: '#fcf3cf'
+       
         
     },
     header: {
@@ -54,7 +55,7 @@ const useStyles = makeStyles(theme=>({
         textTransform:"uppercase",
         marginBottom:"30px",
         fontFamily:"font1",
-        color:"#fcd392"
+        color:"#fcf3cf"
     },
     text:{
         fontFamily: "'Oswald', sans-serif",
@@ -69,7 +70,8 @@ const useStyles = makeStyles(theme=>({
         flexWrap: 'wrap',
         padding: '10px',
         alignContent: 'space-around',
-        justifyContent:'space-around'
+        justifyContent:'space-around',
+        backgroundColor:'#718680'
     },
     divs: {
         border: '1px solid black',
@@ -77,11 +79,11 @@ const useStyles = makeStyles(theme=>({
         margin: '5px'
 
     },
-    buttonflex:{
-        display: 'flex',
-        flexDirection: 'column',
-       
-        alignContent:'center'
+    buttonBox: {
+        width:'150px',
+        display:'block',
+        marginLeft: 'auto',
+        marginRight:'auto'
     }
 }))
 
@@ -147,16 +149,16 @@ const handleSubmit = (e) =>{
                             autoComplete="off"
                         />
                         <br />
-                      
-                            <Button type="submit" onSubmit={handleSubmit}  variant="contained"  className={classes.button} >
+                        <Box className={classes.buttonBox}>
+                            <Button type="submit" onSubmit={handleSubmit}  variant="contained"  fullWidth={true} className={classes.button} >
                                 Search
                             </Button>
                             <NavLink to="/bookshelf" className={classes.link}>
-                                <Button  variant="contained"  className={classes.button} >
+                                <Button  variant="contained"  fullWidth={true} className={classes.button} >
                                 Go To My Bookshelf
                             </Button>
                             </NavLink>
-                 
+                        </Box>
                     </Box> 
                    
                 </Grid>
@@ -166,9 +168,7 @@ const handleSubmit = (e) =>{
 
            <Box className={classes.flex}>
            {results && results.map((book) => {return (
-           
             <BookCard book={book} />
-          
            )})}
            </Box>
     </Box>
