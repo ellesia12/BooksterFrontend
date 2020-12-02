@@ -6,6 +6,7 @@ import './App.css';
 
 
 
+
 // import components here
 import LogIn from "./components/LogIn"
 import Register from "./components/Register"
@@ -14,6 +15,8 @@ import Profile from "./components/Profile"
 
 import BookCard from "./components/BookCard"
 import BookShelf from "./components/BookShelf"
+import ChatRoom from "./components/ChatRoom"
+import Chat from "./components/Chat"
 
 
 const App = () => {
@@ -33,6 +36,14 @@ const App = () => {
               
               <Route path="/bookDetail">
                 <BookCard />
+              </Route>
+
+              <Route path="/chat">
+                <Chat />
+              </Route>
+              
+              <Route path="/chatroom">
+                <ChatRoom />
               </Route>
 
 
