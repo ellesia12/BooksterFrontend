@@ -47,7 +47,8 @@ const useStyles = makeStyles(theme=>({
         fontFamily: "font1"
     },
     word: {
-        fontFamily:"'Oswald', sans-serif"
+        fontFamily:"'Oswald', sans-serif",
+        alignText: 'center'
     }
 }))
 
@@ -56,6 +57,9 @@ const useStyles = makeStyles(theme=>({
 
 const LogIn = ({props}) =>{
 
+
+
+    // const [auth, setAuth] = useState('');
     const classes = useStyles();
     const history = useHistory();
 
@@ -64,11 +68,13 @@ const LogIn = ({props}) =>{
         password: ''
     })
 
+    const [updatedUserInfo, setUpdatedUserInfo] = useState([]);
+
     const [userInfo, setUserInfo] = useState(null)
-    const [loggedIn, setLoggedIn] = useState(false)
+    // const [loggedIn, setLoggedIn] = useState(false)
 
 
-
+    
 
 
     const handleLogin = (e) =>{
@@ -93,9 +99,12 @@ const LogIn = ({props}) =>{
             }
           )
           .then((data) => {
-              console.log(data)
+            //   console.log(data)
             Cookies.set('Bookster', token);
             setUserInfo(data[0])
+            let myCookie = Cookies.get('Bookster');
+            console.log(myCookie)
+            // history.push('/search')
             
           })
           .catch((e) => console.log(e.message));
@@ -104,6 +113,9 @@ const LogIn = ({props}) =>{
             // .then(result=> console.log(result.rows[0]))
             
         }
+
+
+
 
 useEffect(()=> {
     if (userInfo){
@@ -115,13 +127,16 @@ useEffect(()=> {
     
     fetch('http://localhost:3000/login/me', postOptions)
     .then(res=> res.json())
-    .then(data=>console.log(data))
+    //what do we do from here?? i want to make an updated state with the info
+    // then push the person to their profile page
+    .then(data=>setUpdatedUserInfo(data))
+   
     }
     
 
 },[userInfo])
-
-
+    
+    
 
     const handleChange = (e) =>{
         setLoginData({...loginData, [e.target.name]: e.target.value })
@@ -159,13 +174,25 @@ useEffect(()=> {
                         <Button type="submit" onClick={handleLogin}  variant="contained" fullWidth={true} className={classes.button} >
                             Log In
                         </Button>
-                        {userInfo ? <Typography className={classes.word}>Successful login!  Go to your profile {userInfo.first_name} </Typography> 
-                        : <Typography className={classes.word}>you are not logged in! log in or register for an account</Typography>}    
-                        
+                        {userInfo ? 
+                        <>
+                        <Typography className={classes.word}>Successful login! Review your profile below {userInfo.first_name}, or go to your Bookshelf </Typography> 
                         <Button   variant="contained" fullWidth={true} className={classes.button} >
-                            Register for Bookster Here!
-                        </Button>
-                       
+                                Go to your bookshelf
+                            </Button>
+                        <Profile userInfo={userInfo}/>
+                        </>
+                        :<> 
+                        <Typography className={classes.word}>You are not logged in! log in or register for an account</Typography>
+                            <Link to="/register" style={{textDecoration: 'none'}}>
+                            <Button   variant="contained" fullWidth={true} className={classes.button} >
+                                Register for Bookster Here!
+                            </Button>
+                            </Link>
+                           </> }    
+                        
+                        
+                      
                     </Box>         
                 </Grid>
            </Box>

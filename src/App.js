@@ -1,10 +1,10 @@
-import React from "react";
-import { Switch, Route } from "react-router-dom";
+import React, {useState} from "react";
+import { Switch, Route, Link, Redirect } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import './App.css';
+import Cookies from "js-cookie";
 
-
-
+import axios from "axios";
 
 
 // import components here
@@ -19,6 +19,16 @@ import ChatRoom from "./components/ChatRoom"
 import Chat from "./components/Chat"
 
 
+// axios.defaults.headers.common['Authorization'] = `Bearer ${Cookies.get('Bookster')}`
+
+
+
+
+
+
+
+
+
 const App = () => {
  
  
@@ -29,11 +39,10 @@ const App = () => {
  
  
   return (
-  <>
+    <>
      
-          <Switch>
-
-              
+          <Switch> 
+      
               <Route path="/bookDetail">
                 <BookCard />
               </Route>
@@ -55,7 +64,7 @@ const App = () => {
               </Route>
               <Route path="/search"
                 render={(props)=>(<Search {...props}/>)}            
-              />
+              /> 
               <Route path="/profile">
                 <Profile />
               </Route>
@@ -64,11 +73,12 @@ const App = () => {
               </Route>
               <Route exact path="/">
                 <HomePage /> 
-              </Route>
-
-          </Switch>
-</>
+              </Route> 
+           </Switch> 
+  </>
   );
 }
+
+
 
 export default App;
