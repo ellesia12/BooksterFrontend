@@ -24,7 +24,7 @@ const useStyles = makeStyles({
     },
     text: {
         textAlign: 'center',
-        fontFamily: "'Oswald', sans-serif",
+        fontFamily: "'Abril Fatface', cursive"
 
     },
     textAndButton: {
