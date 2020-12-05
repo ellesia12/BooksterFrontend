@@ -9,14 +9,18 @@ import InstagramIcon from '@material-ui/icons/Instagram';
 const useStyles = makeStyles(theme => ({
     root: {
         width: '100%',
-        background: `#C38D9E`,
-        height: '150px'
+        background: '#718680',
+        height: '150px',
+
     },
     box:{
         display: 'flex',
         flexDirection: 'column',
         alignContent: 'start',
         justifyContent: 'center'
+    },
+    color:{
+        color:'#fcf3cf'
     }
     
 }));
@@ -36,10 +40,10 @@ const Footer = () => {
 <>
     <BottomNavigation value={value} onChange={handleChange} className={classes.root} >   
     
-        <BottomNavigationAction label="search: instagram" value="Instagram" icon={<InstagramIcon color="#fcd392"/> } />
+        <BottomNavigationAction className={classes.color} label="search: instagram" value="Instagram" icon={<InstagramIcon color="#fcf3cf"/> } />
       
         {/* <Link href="https://github.com/ellesia12/BooksterFrontend" > */}
-            <BottomNavigationAction label="username: imodrews" value="github" icon={<GitHubIcon color="#fcd392"/>} />
+            <BottomNavigationAction className={classes.color} label="username: imodrews" value="github" icon={<GitHubIcon color="#fcf3cf"/>} />
         {/* </Link> */}
     </BottomNavigation>
 </>

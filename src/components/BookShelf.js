@@ -58,6 +58,12 @@ const useStyles = makeStyles(theme=>({
         fontWeight:'bold',
         backgroundColor: '#718680'
         
+    },
+    cat: {
+        display: 'flex',
+        justifyContent: 'space-around',
+        
+        alignContent: 'center'
     }
 }))
 
@@ -141,9 +147,14 @@ fetch('http://localhost:3000/mybooks')
             </Box>
             
                     
-            <Box>
+            <Box style={{background:"#718680", height: '10%'}}>
             <p>You Selected Book: {selectedBook.title}</p>
             <p>You Selected: {category}</p>
+            </Box>
+            <Box className={classes.cat} style={{background:"#718680", height:"100vh", paddingTop: '50px'}}>
+                <Typography variant="h3" className={classes.header}>To Read</Typography>
+                <Typography variant="h3" className={classes.header}>Reading</Typography>
+                <Typography variant="h3" className={classes.header}>Have Read</Typography>
             </Box>
         </Box>
         </>
