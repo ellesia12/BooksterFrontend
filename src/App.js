@@ -17,7 +17,7 @@ import BookCard from "./components/BookCard"
 import BookShelf from "./components/BookShelf"
 import ChatRoom from "./components/ChatRoom"
 import Chat from "./components/Chat"
-
+import Aboutus from "./components/AboutUs"
 
 // axios.defaults.headers.common['Authorization'] = `Bearer ${Cookies.get('Bookster')}`
 
@@ -73,6 +73,9 @@ const App = () => {
               </Route>
               <Route exact path="/">
                 <HomePage /> 
+              </Route> 
+              <Route exact path="/about">
+                <Aboutus /> 
               </Route> 
            </Switch> 
   </>

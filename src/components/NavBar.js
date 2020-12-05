@@ -92,7 +92,7 @@ const menuItems = [
     },
     {
         listIcon: <FavoriteBorderIcon/>,
-        listText:"All About the Employees",
+        listText:"All About Us",
         listPath:"/about"
     },
     {
