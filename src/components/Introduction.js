@@ -4,11 +4,15 @@ import { makeStyles } from '@material-ui/core/styles';
 import { NavLink } from 'react-router-dom';
 import bookshelf from "../Images/idealbookshelf.jpg";
 
-const useStyles = makeStyles({
+
+const useStyles = makeStyles(theme=>({
     
     position: {
         display: 'flex',
-        paddingBottom:"70px"
+        paddingBottom:"130px",
+        paddingTop: '70px',
+        alignContent: 'center',
+        justifyContent: 'center'
     },
    
     buttonPosition: {
@@ -21,17 +25,40 @@ const useStyles = makeStyles({
 
     button: {
         fontFamily: "'Oswald', sans-serif",
+        fontWeight: 'bold',
+        paddingTop: '20px'
     },
     text: {
         textAlign: 'center',
-        fontFamily: "'Abril Fatface', cursive"
+        fontFamily: "'PT Sans', sans-serif",
+        color: 'black',
+        
+        },
+    header: {
+        textAlign: 'center',
+        fontFamily: "'Abril Fatface', cursive",
+        fontWeight: 'bold',
+        color: '#fcf3cf',
+        paddingBottom: '20px'
 
     },
     textAndButton: {
         marginTop: '100px',
-        width: '600px'
+        width: '600px',
+        color: '#fcf3cf'
+    },
+    quote: {
+        textAlign: 'center',
+        fontStyle: 'italic',
+        color: '#fcf3cf'
+    },
+    quoteBox: {
+        width: '75%',
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        paddingBottom: '150px'
     }
-})
+}))
 
 
 const Introduction = () => {
@@ -39,12 +66,12 @@ const Introduction = () => {
 const classes = useStyles();
 
 return(
-<div className={classes.position}>
-
-       
+<Box>
+<Box className={classes.position}>
+  
 <Box className={classes.textAndButton}>
-        <Typography variant="h2" className={classes.text}>Bookster.</Typography>
-        <Typography className={classes.text}>
+        <Typography variant="h2" className={classes.header}>Bookster.</Typography>
+        <Typography variant="h5" className={classes.text}>
         Create your own book club today and connect 
         <br />
         with friends and make new ones from anywhere in the world!
@@ -58,13 +85,11 @@ return(
         </NavLink>
      </Box>
 </Box>
- <img 
-            src={bookshelf}
-            width="500px"
-        />
-
-</div>
-
+</Box>
+<Box className={classes.quoteBox}>
+<Typography variant="h6" className={classes.quote}>"I couldn't be happier with my experience with Bookster. The process is so simple, you just register, sign up and Bookster saves all your favorite books! You can even organize your bookshelf and chat with others regarding different genres." <br/> - Barak Obama</Typography>
+</Box>
+</Box>
 )
 }
 

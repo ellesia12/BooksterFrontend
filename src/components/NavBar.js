@@ -29,18 +29,20 @@ import "../App.css";
 
 const useStyles = makeStyles(theme =>({
     nav:{
-        backgroundColor: "#c3909b",
+        /* backgroundColor: "black" */
+        background: 'none',
         height: "65px",
     },
     backButton: {
         backgroundColor: "BE0D73"
     },
     arrow: {
-        color: "white"
+        color: '#fcf3cf',
     },
     menuSliderContainer: {
         width: 250,
         height: "40rem",
+        backgroundColor: '#fcf3cf'
         
     },
     avatar: {
@@ -50,11 +52,11 @@ const useStyles = makeStyles(theme =>({
         height: 230
     },
     lsText: {
-        color: "#DB5CA2",
-        fontFamily: "font1",
+        color: "#718680",
+        fontFamily: "'PT Sans', sans-serif",
     },
     lsIcon: {
-        color: "#DB5CA2",
+        color: "#718680",
         
     },
     avatar2: {
@@ -65,6 +67,7 @@ const useStyles = makeStyles(theme =>({
     },
     words:{
         fontFamily: "'Oswald', sans-serif",
+        color: '#fcf3cf',
     }
 }));
 
@@ -122,7 +125,7 @@ const classes = useStyles();
 
 
 const slideList = slider => (
-    <Box component="div" className={classes.menuSliderContainer} onClick={toggleSlider(slider, false)}>
+    <Box component="div" className={classes.menuSliderContainer} onClick={toggleSlider(slider, false)} style={{height: '100vh'}}>
             {/* <Avatar className={classes.avatar2} src={newpic} alt="picture of ellesia" variant="rounded"/> */}
             <Divider />
             <List>
@@ -143,7 +146,7 @@ const slideList = slider => (
     <>
         
         <Box component="nav">
-            <AppBar position="relative" className={classes.nav}>
+            <AppBar  elevation={0} position="relative" className={classes.nav}>
                 <Toolbar>
                     <IconButton onClick={toggleSlider("left", true)} className={classes.backButton}>
                         <MenuIcon className={classes.arrow}/>
@@ -151,6 +154,7 @@ const slideList = slider => (
                     <Typography color="white"  variant="h5" fontFamily="'Oswald', sans-serif" className={classes.words}>
                         Menu
                     </Typography>
+                   
                     <Drawer open={slide.left} anchor="right" onClose={toggleSlider("left", false)}>
                         {slideList("left")}
                         {/* <Footer/> */}
