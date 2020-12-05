@@ -40,6 +40,7 @@ const useStyles = makeStyles(theme=>({
         fontWeight: 'bold',
         color: '#fcf3cf',
         paddingBottom: '20px'
+
     },
     textAndButton: {
         marginTop: '100px',
