@@ -10,15 +10,15 @@ import { makeStyles } from '@material-ui/core/styles';
 import NavBar from "../components/NavBar"
 import Footer from "../components/Footer"
 
-
 const useStyles = makeStyles(theme => ({
    
     root: {
-        backgroundColor: 'white',
-        height: "300px"
-    }
-
-
+        minHeight: '100vh',
+        backgroundColor: '#718680',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover'
+      }
+    
     }))
 
 const HomePage = () => {
