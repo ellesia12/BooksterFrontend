@@ -32,13 +32,33 @@ import { TextField, Button, Box } from '@material-ui/core';
         color: "#C38D9E",
         borderColor: "white",
         borderRadius: "18px",
-        fontFamily:"'Oswald', sans-serif"
+        fontFamily:"'Oswald', sans-serif",
+        textTransform: "uppercase",
+        textDecoration: "none",
+        background: "#fcf3cf",
+        padding: "20px",
+        display: "inline-block",
+        border: "none",
+        width: "20%"
     },
     textArea: {
         border: '2px',
     },
     pageColor: {
         backgroundColor: '#718680'
+    },
+    form: {
+      display: "flex",
+      borderTop: "2px solid",
+
+    },
+    input: {
+      border: "none",
+      borderRadius: "0",
+      padding: "5%",
+      width: "80%",
+      fontSize: "1.2em"
+
     }
 
   }));
@@ -50,10 +70,10 @@ const Input = ({ setMessage, sendMessage, message }) => {
 
 return(
 <Box className={classes.pageColor}>
-  <form className="form">
-  <Box className={classes.textArea}>
+  <form className={classes.form}>
+  <Box>
     <TextField
-      className="input"
+      className={classes.input}
       type="text"
       placeholder="Type a message..."
       value={message}
@@ -61,7 +81,7 @@ return(
       onKeyPress={event => event.key === 'Enter' ? sendMessage(event) : null}
     />
     </Box>
-    <Button className="button" onClick={e => sendMessage(e)}>Send</Button>
+    <Button className={classes.button} onClick={e => sendMessage(e)}>Send</Button>
   </form>
 </Box>
 )

@@ -3,12 +3,13 @@ import queryString from "query-string";
 import InfoBar from './InfoBar';
 import Input from './ChatInput';
 import Messages from './ChatMessages';
+
 import { Box, Card } from '@material-ui/core';
 import { makeStyles, withStyles } from "@material-ui/core/styles"
 
 
 import { useLocation } from "react-router-dom";
-const io=require("socket.io-client");
+import io from "socket.io-client";
 
 
 
@@ -65,7 +66,7 @@ const Chat = () => {
     const classes = useStyles();
  let location = useLocation();
 const [ name, setName ] = useState('');
-const [ room, setRoom ] = useState('');
+const [ room, setRoom ] = useState('classics');
 const [ message, setMessage ] = useState('');
 const [ messages, setMessages ] = useState([]);
 const [ users, setUsers ] = useState([]);
@@ -91,14 +92,15 @@ useEffect(() => {
     });
  
     setName(name);
+    
     setRoom(room); 
+    
 
     socket.emit('join', { name, room }, (error) => {
         if(error){
             alert(error);
         }
     });
-
     return() => {
         socket.emit('disconnected')
         socket.off();
@@ -116,8 +118,14 @@ useEffect(() => {
     socket.on('message', (message) => {
         // This sends each message sent to our messages array.
         setMessages([...messages, message]);
-        })
-    }, [messages]);
+        });
+
+        socket.on('roomData', ({users}) => {
+            setUsers(users);
+        });
+    }, [messages, users]);
+
+    console.log(users)
 
     
 
@@ -129,7 +137,7 @@ const sendMessage = (event) => {
         socket.emit('sendMessage', message, () => setMessage(''));
     }
 }
-console.log(message, messages);
+// console.log(message, messages);
 
 
  return(  
@@ -141,14 +149,14 @@ console.log(message, messages);
                <InfoBar room={room} />
             </Box>
             <Box className={classes.position}>
-                <Box border={1}  className={classes.textArea}>
+                <Box className={classes.textArea}>
                 <Messages messages={messages} name={name} />
                 </Box>
                 <Box>
                 <Input message={message} setMessage={setMessage} sendMessage={sendMessage} />
                 </Box>
             </Box>
-
+                
             </Box>
          
         </Box>
