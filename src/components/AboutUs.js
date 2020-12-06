@@ -1,14 +1,8 @@
-import React, {useState, useEffect} from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles"
 
-import {  Typography, Grid, Box} from "@material-ui/core";
-import { Card, CardMedia,  CardActionArea,  Button  } from "@material-ui/core";
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import NavBar from "./NavBar"
-import Footer from "./Footer"
+import {  Typography, Box} from "@material-ui/core";
+import NavBar from "./NavBar";
 
 const useStyles = makeStyles(theme=>({
   
@@ -17,7 +11,8 @@ const useStyles = makeStyles(theme=>({
         marginBottom:"30px",
         fontSize: "10x",
         fontFamily:"'Oswald', sans-serif",
-        fontWeight:'bold'
+        fontWeight:'bold',
+        alignText: 'center'
        
     },
     root: {
@@ -47,9 +42,9 @@ const AboutUs = () => {
     const classes = useStyles();
     
     return(
-       <>
+       <Box bgcolor="#718680">
        <NavBar></NavBar>    
-        <Box className={classes.position} display="flex"  width={800} height={600} bgcolor="#C38D9E">
+        <Box className={classes.position} display="flex"  width={800} height={600} bgcolor="#718680">
             <Box className={classes.titlePosition} bgcolor="white">
             <Typography color="black" variant="h2"  className={classes.header}>About Us</Typography>
             </Box>
@@ -61,7 +56,7 @@ const AboutUs = () => {
             </Typography>
         </Box>
         </Box>
-     </>
+     </Box>
     );
     }
     
