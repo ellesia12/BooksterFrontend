@@ -17,8 +17,12 @@ import BookCard from "./components/BookCard"
 import BookShelf from "./components/BookShelf"
 import ChatRoom from "./components/ChatRoom"
 import Chat from "./components/Chat"
+
+import Aboutus from "./components/AboutUs"
+
 import { CssBaseline } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
+
 
 // axios.defaults.headers.common['Authorization'] = `Bearer ${Cookies.get('Bookster')}`
 
@@ -81,6 +85,9 @@ const classes = useStyles();
               </Route>
               <Route exact path="/">
                 <HomePage /> 
+              </Route> 
+              <Route exact path="/about">
+                <Aboutus /> 
               </Route> 
            </Switch> 
            </CssBaseline>
