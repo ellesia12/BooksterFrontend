@@ -3,8 +3,12 @@ import { Typography, Button, Box } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { NavLink } from 'react-router-dom';
 import bookshelf from "../Images/idealbookshelf.jpg";
+
 import IconButton from '@material-ui/core/IconButton';
 import Collapse from '@material-ui/core/Collapse';
+
+import image from '../Images/pngegg.png';
+
 
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
@@ -84,6 +88,11 @@ const useStyles = makeStyles(theme=>({
         marginRight: 'auto',
         justifyContent: 'center',
         textAlign: 'center',
+        paddingBottom: '150px'
+    },
+    image: {
+       marginRight: '100px'
+
     }
 }))
 
@@ -103,6 +112,9 @@ return(
 collapsedHeight={50}>
 <Box className={classes.fix}>
 <Box className={classes.textAndButton}>
+   
+    
+    <Box>
         <Typography variant="h2" className={classes.header}>Bookster.</Typography>
         <Typography variant="h5" className={classes.text}>
         Create your own book club today and connect 
@@ -111,6 +123,8 @@ collapsedHeight={50}>
         </Typography>
 </Box>
 </Box>
+
+ 
 
     <Box className={classes.buttonPosition}>
         <NavLink to='/register'>

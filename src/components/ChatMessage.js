@@ -1,37 +1,105 @@
 import React from 'react';
-
-
-
+import { Typography, Button, Box } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 import ReactEmoji from 'react-emoji';
+import clsx from  'clsx';
 
-const Message = ({ message: { text, user }, name }) => {
+
+const useStyles = makeStyles(theme=>({
+
+  messageBox: {
+    background: "#b2837a",
+    borderRadius: "20px",
+    padding: "5px 20px",
+    color: "black",
+    display: "inline-block",
+    maxWidth: "80%"
+  },
+ 
+  
+  messageText: {
+    width: "100%",
+    letterSpacing: "0",
+    float: "left",
+    fontSize: "1.1em",
+    wordWrap: "break-word"
+  },
+  
+  messageText: {
+    verticalAlign: "middle"
+  },
+  
+  messageContainer: {
+    display: "flex",
+    justifyContent: "flex-end",
+    padding: "0 5%",
+    marginTop: "3px"
+  },
+  justifyEnd: {
+    
+    justifyContent: "flex-end",
+
+  },
+
+  justifyStart: {
+    justifyContent: "flex-start"
+  }, 
+  
+  sentText: {
+    display: "flex",
+    alignItems: "center",
+    fontFamily: "Helvetica",
+    color: "black",
+    letterSpacing: "0.3px"
+  },
+
+  sendTextPadding: {
+    paddingRight: "10px",
+  },
+  sentTextPadding: {
+  paddingLeft: "10px"
+}
+
+  
+
+  
+}))
+
+const ChatMessage = ({ message: { text, users }, name }) => {
   let isSentByCurrentUser = false;
+  const classes = useStyles();
 
-  const trimmedName = name.trim().toLowerCase();
 
-  if(user === trimmedName) {
+console.log(users)
+
+ 
+
+
+const trimmedName = name.trim().toLowerCase();
+console.log(trimmedName)
+  if(users === name) {
     isSentByCurrentUser = true;
   }
 
   return (
     isSentByCurrentUser
       ? (
-        <div className="messageContainer justifyEnd">
-          <p className="sentText pr-10">{trimmedName}</p>
-          <div className="messageBox backgroundBlue">
-            <p className="messageText colorWhite">{ReactEmoji.emojify(text)}</p>
-          </div>
-        </div>
+        <Box className={ clsx(classes.messageContainer, classes.justifyEnd)}>
+          <Typography className={ clsx(classes.sentText, classes.sentTextPadding)}>{trimmedName}</Typography>
+          <Box className={ clsx(classes.messageBox, classes.messageBoxBackground)}>
+            <Typography className={classes.messageText}>{ReactEmoji.emojify(text)}</Typography>
+          </Box>
+        </Box>
         )
         : (
-          <div className="messageContainer justifyStart" borderRadius={16}>
-            <div className="messageBox backgroundLight">
-              <p className="messageText colorDark">{ReactEmoji.emojify(text)}</p>
-            </div>
-            <p className="sentText pl-10 ">{user}</p>
-          </div>
+          <Box className={ clsx(classes.messageContainer, classes.justifyStart)}>
+            <Box className={classes.messageBox}>
+              <Typography className={classes.messageText}>{ReactEmoji.emojify(text)}</Typography>
+            </Box>
+            <Typography className={ clsx(classes.sentText, classes.sentTextPadding)}>{users}</Typography>
+          </Box>
         )
   );
 }
 
-export default Message;
+export default ChatMessage;
