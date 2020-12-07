@@ -113,6 +113,7 @@ collapsedHeight={50}>
 <Box className={classes.fix}>
 <Box className={classes.textAndButton}>
    
+   
     
     <Box>
         <Typography variant="h2" className={classes.header}>Bookster.</Typography>
@@ -123,7 +124,7 @@ collapsedHeight={50}>
         </Typography>
 </Box>
 </Box>
-
+</Box>
  
 
     <Box className={classes.buttonPosition}>
