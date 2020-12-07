@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import stepOne from "../Images/se.png"
 import stepTwo from "../Images/search.png";
 import stepThree from "../Images/support_solid_I.png"
+import Collapse from '@material-ui/core/Collapse';
 
 const useStyles = makeStyles(theme => ({
    
@@ -37,7 +38,8 @@ const useStyles = makeStyles(theme => ({
       cardHeader: {
           fontWeight: `bold`,
           color: `#fcf3cf`,
-          fontFamily:"font1",
+          fontFamily:"'Oswald', sans-serif",
+          marginBottom: '10px'
       },
       media: {
         width: '100%',
@@ -47,28 +49,36 @@ const useStyles = makeStyles(theme => ({
       },
       box:{
           paddingBottom: "40px"
+      },
+      container: {
+          height: '100vh'
       }
       
   
 }))
 
-const HowItWorks = () => {
+const HowItWorks = ({checked}) => {
 
 const classes = useStyles();
 
     return(
-    <>
-        <Box className={classes.container}>
+        
+    <Box className={classes.container}>
+        <Box >
+        
         <Box className={classes.box}>
             <Typography className={classes.text} color="secondary" variant="h2"> HOW WE WORK</Typography>
         </Box>
+        
         </Box>
+        <Collapse in={checked} {...(checked ? { timeout: 1000 } : {})}>
         <Grid className={classes.gridPosition}>
             <Card className={classes.root}>
-                <CardHeader
+                {/* <CardHeader
                     title="Step 1"
                     className={classes.cardHeader}
-                /> 
+                />  */}
+                <Typography variant="h4" className={classes.cardHeader}>Step 1</Typography>
                 <CardMedia
                     className={classes.media}
                     image={stepOne}
@@ -80,11 +90,7 @@ const classes = useStyles();
                 </CardContent>
             </Card>
             <Card className={classes.root}>
-                <CardHeader
-                    title="Step 2"
-                    className={classes.cardHeader}
-                    fontFamily="'Oswald', sans-serif">
-                </CardHeader>
+            <Typography variant="h4" className={classes.cardHeader}>Step 2</Typography>
                 <CardMedia
                     className={classes.media}
                     image={stepTwo}
@@ -96,10 +102,7 @@ const classes = useStyles();
                 </CardContent>
             </Card>
             <Card className={classes.root}>
-                <CardHeader
-                    title="Step 3"
-                    className={classes.cardHeader}
-                />
+            <Typography variant="h4" className={classes.cardHeader}>Step 3</Typography>
                 <CardMedia
                     className={classes.media}
                     image={stepThree}
@@ -111,7 +114,8 @@ const classes = useStyles();
                 </CardContent>
             </Card>
     </Grid>
-    </>
+    </Collapse>
+    </Box>
 
     );
 };
