@@ -60,25 +60,26 @@ const useStyles = makeStyles(theme=>({
      }
  }))
 
-
-
-const Chat = () => {  
-    const classes = useStyles();
- let location = useLocation();
-const [ name, setName ] = useState('');
-const [ room, setRoom ] = useState('classics');
-const [ message, setMessage ] = useState('');
-const [ messages, setMessages ] = useState([]);
-const [ users, setUsers ] = useState([]);
-
-const ENDPOINT = "http://localhost:3000";
-
-const socket = io(ENDPOINT, {
+ const ENDPOINT = "http://localhost:3000";
+ const socket = io.connect(ENDPOINT, {
     // withCredentials: true,
     extraHeaders: {
         "Bookster":"x-secret-token"
     }
 });
+
+const Chat = () => {  
+    const classes = useStyles();
+ let location = useLocation();
+const [ name, setName ] = useState('');
+const [ room, setRoom ] = useState('');
+const [ message, setMessage ] = useState('');
+const [ messages, setMessages ] = useState([]);
+const [ users, setUsers ] = useState([]);
+
+
+
+
 
 //This useEffect joins the user to the room
 
@@ -101,10 +102,6 @@ useEffect(() => {
             alert(error);
         }
     });
-    return() => {
-        socket.emit('disconnected')
-        socket.off();
-    }
 
 },[ENDPOINT, location.search]);
 
@@ -115,29 +112,25 @@ useEffect(() => {
 
 useEffect(() => {
     
-    socket.on('message', (message) => {
+    socket.on('message', message => {
         // This sends each message sent to our messages array.
-        setMessages([...messages, message]);
+        setMessages(messages => [...messages, message]);
         });
 
         socket.on('roomData', ({users}) => {
             setUsers(users);
+           
         });
-    }, [messages, users]);
+        console.log(users)
+    }, []);
 
-    console.log(users)
-
-    
-
-
-    // function for sending messages
 const sendMessage = (event) => {
     event.preventDefault();
     if(message) {
         socket.emit('sendMessage', message, () => setMessage(''));
     }
 }
-// console.log(message, messages);
+console.log(message, messages);
 
 
  return(  

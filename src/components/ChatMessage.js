@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, Button, Box } from '@material-ui/core';
+import { Typography, Box } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import ReactEmoji from 'react-emoji';
 import clsx from  'clsx';
@@ -65,21 +65,22 @@ const useStyles = makeStyles(theme=>({
   
 }))
 
-const ChatMessage = ({ message: { text, users }, name }) => {
+const ChatMessage = ({ message: { text, user }, name }) => {
   let isSentByCurrentUser = false;
   const classes = useStyles();
+  // console.log(user)
 
 
-console.log(users)
-
- 
+console.log(user)
 
 
 const trimmedName = name.trim().toLowerCase();
+
 console.log(trimmedName)
-  if(users === name) {
-    isSentByCurrentUser = true;
-  }
+
+  // if(user === name) {
+  //   isSentByCurrentUser = true;
+  // }
 
   return (
     isSentByCurrentUser
@@ -96,7 +97,7 @@ console.log(trimmedName)
             <Box className={classes.messageBox}>
               <Typography className={classes.messageText}>{ReactEmoji.emojify(text)}</Typography>
             </Box>
-            <Typography className={ clsx(classes.sentText, classes.sentTextPadding)}>{users}</Typography>
+            <Typography className={ clsx(classes.sentText, classes.sentTextPadding)}>{user}</Typography>
           </Box>
         )
   );

@@ -9,7 +9,9 @@ const useStyles = makeStyles(theme=>({
   messages: {
   padding: "5% 0",
   overflow: "auto",
-  flex: "auto"
+  flex: "auto",
+  height: '600',
+  width: '400'
 }
 }))
 
@@ -18,7 +20,7 @@ const ChatMessages = ({ messages, name }) => {
 const classes = useStyles();
 
 return(
-  <ScrollToBottom className={classes.messages}>
+  <ScrollToBottom className={classes.messages} behavior="smooth">
     {messages.map((message, i) => <div key={i}><ChatMessage message={message} name={name}/></div>)}
   </ScrollToBottom>
 )
