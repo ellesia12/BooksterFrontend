@@ -64,6 +64,43 @@ const useStyles = makeStyles(theme=>({
         justifyContent: 'space-around',
         
         alignContent: 'center'
+    },
+    text: {
+        fontFamily: "'PT Sans', sans-serif",
+        
+    },
+    button1:{
+        marginTop: "1rem",
+        color: "black",
+        borderColor: "white",
+        borderRadius: "18px",
+        fontFamily:"'Oswald', sans-serif",
+        backgroundColor: '#fcf3cf',
+        marginBottom: '1rem',
+       
+    },
+    container: {
+        border: '2px solid #fcf3cf',
+        margin: '20px',
+        alignContent: 'center',
+        justifyContent: 'center',
+        display: 'flex',
+        flexDirection: 'column',
+        alignText: 'center'
+    },
+    grid: {
+        display: 'flex',
+        flexDirection: 'column',
+        width: '75%',
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        marginBottom: '80px'
+    },
+    text2: {
+        fontFamily: "'PT Sans', sans-serif",
+        color: '#fcf3cf',
+        textAlign: 'center',
+
     }
 }))
 
@@ -79,9 +116,26 @@ const BookShelf = () =>{
     const [open, setOpen] = React.useState(false);
     const [selectedBook, setSelectedBook] = useState(false);
 
-  const handleChange = (event) => {
-    setCategory(event.target.value);
+  const handleChange = (event, googleid) => {
+    // console.log(event.target.value);
+    //add post request here to update database to the correct status
+    const books = myBooks
+    const newbook = books.map(book=>{
+        if(book.googleid === googleid){
+            
+            return {...book, status: event.target.value}
+        }
+        else{
+            return book
+        }
+    })
+    
+  
+    setMyBooks(newbook)
   };
+
+
+  
 
   const handleClose = () => {
     setOpen(false);
@@ -104,20 +158,21 @@ fetch('http://localhost:3000/mybooks')
 .then((data)=> setMyBooks(data))
 .catch((e) => console.log(e.message));
 
-}, [myBooks])
+}, [])
 
 
 
     return (
     <>
     <Box component="div" style={{background:"#718680", height:"100vh", paddingTop: '100px'}}>
-        <Grid container justify="center">
-            <Typography variant="h3" className={classes.header}>My Bookshelf</Typography>
+        <Grid container justify="center" className={classes.grid}>
+            <Typography variant="h2" className={classes.header}>My Bookshelf</Typography>
+            <Typography variant="h6" className={classes.text2}>Here you can organize your Bookshelf, just select the appropriate status of your book, and organize your bookshelf! When you're ready to discuss your book, just click on the button provided an you will be taken to that genre's chatroom! Happy Reading!</Typography>
         </Grid>
                 <Box  className={classes.display}>
                 {myBooks && myBooks.map((book)=>{
                 return(
-                    
+                <> 
                 <Card className={classes.root} key={book.googleid} onClick={(e)=>setSelectedBook(book)}>
                     <CardActionArea>
                         <CardMedia
@@ -128,39 +183,72 @@ fetch('http://localhost:3000/mybooks')
                             {book.title}
                         </Typography>
                         <Button className={classes.button} onClick={handleOpen}>
-                            Select a Category
+                            Select Book's Status
                         </Button>
                 <FormControl className={classes.formControl}>
                             <Select   
-                                value={category}
-                                onChange={handleChange}
+                                value={book.status}
+                                onChange={(event)=> handleChange(event, book.googleid)}
                             >
-                                <MenuItem value={'Reading'}>Reading</MenuItem>
-                                <MenuItem value={'To Read'}>To Read</MenuItem>
-                                <MenuItem value={'Have Read'}>Have Read</MenuItem>
+                                <MenuItem value={'reading'}>Reading</MenuItem>
+                                <MenuItem value={'to read'}>To Read</MenuItem>
+                                <MenuItem value={'have read'}>Have Read</MenuItem>
                             </Select>
                 </FormControl>
                     </CardActionArea>
                 </Card>
-              
+               
+            </>
                 )})}
             </Box>
             
                     
             <Box style={{background:"#718680", height: '10%'}}>
-            <p>You Selected Book: {selectedBook.title}</p>
-            <p>You Selected: {category}</p>
             </Box>
             <Box className={classes.cat} style={{background:"#718680", height:"100vh", paddingTop: '50px'}}>
-                <Typography variant="h3" className={classes.header}>To Read</Typography>
-                <Typography variant="h3" className={classes.header}>Reading</Typography>
-                <Typography variant="h3" className={classes.header}>Have Read</Typography>
+                <Box>
+                    <Typography variant="h3" className={classes.header}>To Read</Typography>
+                    <Typography>{myBooks && myBooks.map(book=>{if(book.status === 'to read'){
+                        return (
+                            <Box className={classes.container}>
+                            <Typography variant="h6" className={classes.text}>{book.title}</Typography>
+                            <Button className={classes.button1}>Discuss this book with others!</Button>
+                            </Box>
+                            )
+                    }else{return <></>}
+                    })}</Typography>
+                </Box>
+                <Box>
+                    <Typography variant="h3" className={classes.header}>Reading</Typography>
+                    <Typography>{myBooks && myBooks.map(book=>{if(book.status === 'reading'){
+                        return (
+                            <Box className={classes.container}>
+                            <Typography variant="h6" className={classes.text}>{book.title}</Typography>
+                            <Button className={classes.button1}>Discuss this book with others!</Button>
+                            </Box>
+                            )
+                    }else {return <></>}
+                    })}</Typography>
+                </Box>
+                <Box>
+                    <Typography variant="h3" className={classes.header}>Have Read</Typography>
+                    <Typography>{myBooks && myBooks.map(book=>{if(book.status === 'have read'){
+                        return (
+                            <Box className={classes.container}>
+                            <Typography variant="h6" className={classes.text}>{book.title}</Typography>
+                            <Button className={classes.button1}>Discuss this book with others!</Button>
+                            </Box>
+                            )
+                    }else {return <></>}
+                    })}</Typography>
+                </Box>
             </Box>
         </Box>
         </>
     )
 }
 
+//conditional render based on the status, map through the books and only if the status = value then show it there 
 
 
 
