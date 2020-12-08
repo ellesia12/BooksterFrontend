@@ -112,7 +112,7 @@ const handleSearch = (e) =>{
 const handleSubmit = (e) =>{
     e.preventDefault();
  
-    axios.get(`https://www.googleapis.com/books/v1/volumes?q=${query}&maxResults=18&startIndex=1&key=AIzaSyDXXOp7xMvzIDXxTNqgD3oqjh8o5ZlHXMw`)
+    axios.get(`https://www.googleapis.com/books/v1/volumes?q=${query}&maxResults=18&startIndex=1&key=`+process.env.API_KEY)
     
     .then(data =>{
         setResults(data.data.items)
