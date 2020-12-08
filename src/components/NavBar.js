@@ -145,7 +145,7 @@ const slideList = slider => (
     return(
     <>
         
-        <Box component="nav">
+        <Box component="nav" >
             <AppBar  elevation={0} position="relative" className={classes.nav}>
                 <Toolbar>
                     <IconButton onClick={toggleSlider("left", true)} className={classes.backButton}>

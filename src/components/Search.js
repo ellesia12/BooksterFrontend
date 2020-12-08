@@ -13,6 +13,7 @@ import { NavLink } from "react-router-dom";
 import axios from "axios";
 // import BookShelf from "./BookShelf";
 
+const api_key = process.env.REACT_APP_GOOGLE_API_KEY;
 
 const InputField = withStyles({
     root:{
@@ -112,7 +113,7 @@ const handleSearch = (e) =>{
 const handleSubmit = (e) =>{
     e.preventDefault();
  
-    axios.get(`https://www.googleapis.com/books/v1/volumes?q=${query}&maxResults=18&startIndex=1&key=AIzaSyDXXOp7xMvzIDXxTNqgD3oqjh8o5ZlHXMw`)
+    axios.get(`https://www.googleapis.com/books/v1/volumes?q=${query}&maxResults=18&startIndex=1&key=${api_key}`)
     
     .then(data =>{
         setResults(data.data.items)

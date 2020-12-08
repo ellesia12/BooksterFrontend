@@ -35,16 +35,19 @@ const useStyles = makeStyles(theme=>({
     },
     button: {
         marginTop: "1rem",
-        color: "#C38D9E",
+        color: "black",
         borderColor: "white",
         borderRadius: "18px",
-        fontFamily:"'Oswald', sans-serif"
+        fontFamily:"'Oswald', sans-serif",
+        backgroundColor: '#fcf3cf'
     },
     header: {
         textAlign: "center",
         textTransform:"uppercase",
         marginBottom:"30px",
-        fontFamily: "font1"
+        fontFamily: "font1",
+        color:"#fcf3cf",
+        fontSize: '3.5rem'
     },
     word: {
         fontFamily:"'Oswald', sans-serif",
@@ -130,7 +133,7 @@ useEffect(()=> {
     //what do we do from here?? i want to make an updated state with the info
     // then push the person to their profile page
     .then(data=>setUpdatedUserInfo(data))
-   
+    
     }
     
 
@@ -145,7 +148,7 @@ useEffect(()=> {
 
     return (
         <>
-            <Box component="div" style={{background:"#C38D9E", height:"100vh"}}>
+            <Box component="div" style={{background:"#718680", height:"100vh"}}>
                 <Grid container justify="center">
                     <Box component="form"  className={classes.form}>
                         <Typography variant="h3" className={classes.header}>
@@ -169,6 +172,7 @@ useEffect(()=> {
                             name="password"
                             value={loginData.password}
                             onChange={handleChange}
+                            type="password"
                         />
                         
                         <Button type="submit" onClick={handleLogin}  variant="contained" fullWidth={true} className={classes.button} >
