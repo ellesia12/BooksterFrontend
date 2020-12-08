@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme=>({
     
     position: {
         display: 'flex',
-        paddingBottom:"130px",
+        paddingBottom:"100px",
         paddingTop: '70px',
         alignContent: 'center',
         justifyContent: 'center'
@@ -33,7 +33,12 @@ const useStyles = makeStyles(theme=>({
     button: {
         fontFamily: "'Oswald', sans-serif",
         fontWeight: 'bold',
-        paddingTop: '20px'
+        paddingTop: '20px',
+        textDecoration: 'none',
+        fontSize: '2rem',
+    },
+    navLink: {
+        textDecoration: 'none'
     },
     text: {
         textAlign: 'center',
@@ -46,11 +51,12 @@ const useStyles = makeStyles(theme=>({
         fontFamily: "'Abril Fatface', cursive",
         fontWeight: 'bold',
         color: '#fcf3cf',
-        paddingBottom: '20px'
+        paddingBottom: '20px',
+        fontSize: '6rem'
 
     },
     textAndButton: {
-        marginTop: '100px',
+        marginTop: '70px',
         width: '600px',
         color: '#fcf3cf',
     },
@@ -128,9 +134,9 @@ collapsedHeight={50}>
  
 
     <Box className={classes.buttonPosition}>
-        <NavLink to='/register'>
+        <NavLink to='/register' className={classes.navLink}>
             <Button className={classes.button} >
-            Sign up!
+            Sign up
             </Button>
         </NavLink>
      </Box>
