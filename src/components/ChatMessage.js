@@ -78,9 +78,9 @@ const trimmedName = name.trim().toLowerCase();
 
 console.log(trimmedName)
 
-  // if(user === name) {
-  //   isSentByCurrentUser = true;
-  // }
+  if(user === name) {
+    isSentByCurrentUser = true;
+  }
 
   return (
     isSentByCurrentUser

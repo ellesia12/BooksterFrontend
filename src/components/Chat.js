@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import queryString from "query-string";
 import InfoBar from './InfoBar';
 import Input from './ChatInput';
@@ -62,11 +62,12 @@ const useStyles = makeStyles(theme=>({
 
  const ENDPOINT = "http://localhost:3000";
  const socket = io.connect(ENDPOINT, {
-    // withCredentials: true,
-    extraHeaders: {
-        "Bookster":"x-secret-token"
-    }
+   // withCredentials: true,
+   extraHeaders: {
+       "Bookster":"x-secret-token"
+   }
 });
+
 
 const Chat = () => {  
     const classes = useStyles();
@@ -78,14 +79,14 @@ const [ messages, setMessages ] = useState([]);
 const [ users, setUsers ] = useState([]);
 
 
-
+const socketRef = useRef();
 
 
 //This useEffect joins the user to the room
 
 useEffect(() => {
     const { name, room } = queryString.parse(location.search)
-    const socket = io(ENDPOINT, {
+     socketRef.current = io(ENDPOINT, {
         // withCredentials: true,
         extraHeaders: {
             "Bookster":"x-secret-token"
@@ -97,7 +98,7 @@ useEffect(() => {
     setRoom(room); 
     
 
-    socket.emit('join', { name, room }, (error) => {
+    socketRef.current.emit('join', { name, room }, (error) => {
         if(error){
             alert(error);
         }
@@ -112,12 +113,12 @@ useEffect(() => {
 
 useEffect(() => {
     
-    socket.on('message', message => {
+    socketRef.current.on('message', message => {
         // This sends each message sent to our messages array.
         setMessages(messages => [...messages, message]);
         });
 
-        socket.on('roomData', ({users}) => {
+        socketRef.current.on('roomData', ({users}) => {
             setUsers(users);
            
         });
@@ -127,7 +128,7 @@ useEffect(() => {
 const sendMessage = (event) => {
     event.preventDefault();
     if(message) {
-        socket.emit('sendMessage', message, () => setMessage(''));
+        socketRef.current.emit('sendMessage', message, () => setMessage(''));
     }
 }
 console.log(message, messages);
