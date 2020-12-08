@@ -41,9 +41,6 @@ import { TextField, Button, Box } from '@material-ui/core';
         border: "none",
         width: "20%"
     },
-    textArea: {
-        border: '2px',
-    },
     pageColor: {
         backgroundColor: '#718680'
     },

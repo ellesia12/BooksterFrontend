@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import queryString from "query-string";
 import InfoBar from './InfoBar';
 import Input from './ChatInput';
@@ -60,31 +60,33 @@ const useStyles = makeStyles(theme=>({
      }
  }))
 
+ const ENDPOINT = "http://localhost:3000";
+ const socket = io.connect(ENDPOINT, {
+   // withCredentials: true,
+   extraHeaders: {
+       "Bookster":"x-secret-token"
+   }
+});
 
 
 const Chat = () => {  
     const classes = useStyles();
  let location = useLocation();
 const [ name, setName ] = useState('');
-const [ room, setRoom ] = useState('classics');
+const [ room, setRoom ] = useState('');
 const [ message, setMessage ] = useState('');
 const [ messages, setMessages ] = useState([]);
 const [ users, setUsers ] = useState([]);
 
-const ENDPOINT = "http://localhost:3000";
 
-const socket = io(ENDPOINT, {
-    // withCredentials: true,
-    extraHeaders: {
-        "Bookster":"x-secret-token"
-    }
-});
+const socketRef = useRef();
+
 
 //This useEffect joins the user to the room
 
 useEffect(() => {
     const { name, room } = queryString.parse(location.search)
-    const socket = io(ENDPOINT, {
+     socketRef.current = io(ENDPOINT, {
         // withCredentials: true,
         extraHeaders: {
             "Bookster":"x-secret-token"
@@ -96,15 +98,11 @@ useEffect(() => {
     setRoom(room); 
     
 
-    socket.emit('join', { name, room }, (error) => {
+    socketRef.current.emit('join', { name, room }, (error) => {
         if(error){
             alert(error);
         }
     });
-    return() => {
-        socket.emit('disconnected')
-        socket.off();
-    }
 
 },[ENDPOINT, location.search]);
 
@@ -115,29 +113,25 @@ useEffect(() => {
 
 useEffect(() => {
     
-    socket.on('message', (message) => {
+    socketRef.current.on('message', message => {
         // This sends each message sent to our messages array.
-        setMessages([...messages, message]);
+        setMessages(messages => [...messages, message]);
         });
 
-        socket.on('roomData', ({users}) => {
+        socketRef.current.on('roomData', ({users}) => {
             setUsers(users);
+           
         });
-    }, [messages, users]);
+        console.log(users)
+    }, []);
 
-    console.log(users)
-
-    
-
-
-    // function for sending messages
 const sendMessage = (event) => {
     event.preventDefault();
     if(message) {
-        socket.emit('sendMessage', message, () => setMessage(''));
+        socketRef.current.emit('sendMessage', message, () => setMessage(''));
     }
 }
-// console.log(message, messages);
+console.log(message, messages);
 
 
  return(  
