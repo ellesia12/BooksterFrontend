@@ -34,7 +34,8 @@ const useStyles = makeStyles(theme=>({
        top:"50%",
          left:"50%",
          transform: "translate(-50%, -50%)",
-         position: "absolute"
+         position: "absolute",
+        
         
      },
      buttonPosition: {
@@ -85,7 +86,10 @@ const socketRef = useRef();
 //This useEffect joins the user to the room
 
 useEffect(() => {
-    const { name, room } = queryString.parse(location.search)
+    const { name, room } = queryString.parse(location.search, {
+        ignoreQueryPrefix: true
+    });
+    
      socketRef.current = io(ENDPOINT, {
         // withCredentials: true,
         extraHeaders: {

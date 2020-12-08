@@ -34,8 +34,18 @@ const useStyles = makeStyles(theme=>({
       
   },
   roomName: {
-      border: '2px',
+      fontSize: "30px",
+      fontFamily: "'Abril Fatface', cursive",
+      letterSpacing: '1px',
+      padding: '10px'
   },
+  icon: {
+    width: "20px",
+    color: '#b2837a'
+  },
+  closeIcon: {
+    color: '#b2837a'
+  }
   
   
 
@@ -51,11 +61,11 @@ const InfoBar = ({ room }) => {
 return(
   <Box className={classes.infoBar}>
     <Box className={classes.leftInnerContainer}>
-    <FiberManualRecordIcon />
+    <FiberManualRecordIcon className={classes.icon} />
       <h3 className={classes.roomName}>{room} </h3>
     </Box>
     <Box className={classes.rightInnerContainer}>
-        <a href="/chatroom"><CloseIcon /></a>
+        <a href="/chatroom"><CloseIcon className={classes.closeIcon}/></a>
     </Box>
     
   </Box>
