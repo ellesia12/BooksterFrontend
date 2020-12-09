@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import '../App.css';
 import { makeStyles, withStyles } from "@material-ui/core/styles"
 import { TextField, Typography, Button, Grid, Box} from "@material-ui/core";
+import NavBar from './NavBar';
 
 const InputField = withStyles({
     root:{
@@ -31,23 +32,28 @@ const useStyles = makeStyles(theme=>({
     },
     button: {
         marginTop: "1rem",
-        color: "#C38D9E",
+        color: "black",
         borderColor: "white",
         borderRadius: "18px",
-        fontFamily:"'Oswald', sans-serif"
+        fontFamily:"'Oswald', sans-serif",
+        backgroundColor: '#fcf3cf'
     },
     header: {
         textAlign: "center",
-        textTransform:"uppercase",
+        
         marginBottom:"30px",
-        fontFamily: "font1",
+        fontFamily: "'Abril Fatface', cursive",
+        color: '#fcf3cf',
+        fontSize: '3.5rem'
     },
     text: {
         fontFamily: "'Oswald', sans-serif",
         
     },
     word: {
-        fontFamily:"'Oswald', sans-serif"
+        fontFamily:"'Oswald', sans-serif",
+        fontSize: '1.6rem',
+        textAlign: 'center'
     }
 }))
 
@@ -100,7 +106,8 @@ const handleChange = (e) =>{
 
     return (
         <>
-            <Box component="div" style={{background:"#C38D9E", height:"100vh"}} className={classes.text}>
+        <NavBar />
+            <Box component="div" style={{background:"#718680", height:"100vh"}} className={classes.text}>
                 <Grid container justify="center">
                     <Box component="form"  className={classes.form}>
                         <Typography variant="h3" className={classes.header}>

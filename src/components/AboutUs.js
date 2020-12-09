@@ -3,28 +3,31 @@ import { makeStyles } from "@material-ui/core/styles"
 
 import {  Typography, Box} from "@material-ui/core";
 import NavBar from "./NavBar";
+import Avatar from '@material-ui/core/Avatar';
+import cris from '../Images/cris.jpg';
+import elle from '../Images/elle.jpg';
+import imo from '../Images/imo.jpg';
 
 const useStyles = makeStyles(theme=>({
   
     header: {
-        textTransform:"uppercase",
         marginBottom:"30px",
-        fontSize: "10x",
-        fontFamily:"'Oswald', sans-serif",
+        fontSize: "4rem",
+        fontFamily: "'Abril Fatface', cursive",
         fontWeight:'bold',
-        alignText: 'center'
+        textAlign: 'center',
+       
        
     },
     root: {
-        backgroundColor: 'white',
-        height: "600px"
+        backgroundColor: '#fcf3cf',
+        height: "100vh"
     },
-    text: {
-        fontFamily:"'Oswald', sans-serif",               
+    text: {              
         lineHeight: "40px",
         height: "50px",
-        padding: "10px",
-        margin: "30px"
+        paddingTop: '30px',
+        fontFamily: "'PT Sans', sans-serif"
     },
     position: {
         position: 'absolute', 
@@ -34,7 +37,11 @@ const useStyles = makeStyles(theme=>({
     },
     titlePosition: {
         margin: "30px",
-        padding: "5px"
+        padding: "5px",
+        backgroundColor: '#fcf3cf'
+    },
+    co :{
+        backgroundColor: '#fcf3cf'
     }
 }))
 const AboutUs = () => {
@@ -42,7 +49,8 @@ const AboutUs = () => {
     const classes = useStyles();
     
     return(
-       <Box bgcolor="#718680">
+    <div className={classes.root}>
+       <Box className={classes.co}>
        <NavBar></NavBar>    
         <Box className={classes.position} display="flex"  width={800} height={600} bgcolor="#718680">
             <Box className={classes.titlePosition} bgcolor="white">
@@ -56,8 +64,12 @@ const AboutUs = () => {
             </Typography>
         </Box>
         </Box>
+        <Box>
+            <Avatar alt="imo" ></Avatar>
+        </Box>
      </Box>
+</div>
     );
-    }
+}
     
     export default AboutUs;
