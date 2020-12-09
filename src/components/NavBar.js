@@ -38,6 +38,7 @@ const useStyles = makeStyles(theme =>({
     },
     arrow: {
         color: '#fcf3cf',
+        fontSize: '2.2rem'
     },
     menuSliderContainer: {
         width: 250,
@@ -68,6 +69,7 @@ const useStyles = makeStyles(theme =>({
     words:{
         fontFamily: "'Oswald', sans-serif",
         color: '#fcf3cf',
+        fontSize: '2.2rem'
     }
 }));
 
@@ -97,13 +99,7 @@ const menuItems = [
         listIcon: <FavoriteBorderIcon/>,
         listText:"All About Us",
         listPath:"/about"
-    },
-    {
-        listIcon: <ContactMail/>,
-        listText: "Contact Us",
-        listPath: "/contact"
-    },
-   
+    }
     
 ];
 

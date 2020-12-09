@@ -10,8 +10,8 @@ const useStyles = makeStyles(theme=>({
   padding: "5% 0",
   overflow: "auto",
   flex: "auto",
-  height: '600',
-  width: '400'
+  height: '1500px',
+  width: '600'
 }
 }))
 

@@ -7,6 +7,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import NavBar from './NavBar';
+import { Link } from 'react-router-dom';
 // import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 //here add the fetch for getting the books by user from the data base and then display them
 
@@ -107,6 +108,11 @@ const useStyles = makeStyles(theme=>({
         color: '#fcf3cf',
         textAlign: 'center',
 
+    },
+    buttonbox: {
+        justifyContent: 'center',
+        display: 'flex',
+        marginTop: '1rem'
     }
 }))
 
@@ -175,6 +181,11 @@ fetch('http://localhost:3000/mybooks')
         <Grid container justify="center" className={classes.grid}>
             <Typography variant="h2" className={classes.header}>My Bookshelf</Typography>
             <Typography variant="h6" className={classes.text2}>Here you can organize your Bookshelf, just select the appropriate status of your book, and organize your bookshelf! When you're ready to discuss your book, just click on the button provided an you will be taken to that genre's chatroom! Happy Reading!</Typography>
+            <Box className={classes.buttonbox}>
+                <Link to="/search" style={{textDecoration:'none'}}>
+                <Button className={classes.button1}>Search for more books here</Button>
+                </Link>
+            </Box>
         </Grid>
                 <Box  className={classes.display}>
                 {myBooks && myBooks.map((book)=>{
@@ -219,7 +230,9 @@ fetch('http://localhost:3000/mybooks')
                         return (
                             <Box className={classes.container}>
                             <Typography variant="h6" className={classes.text}>{book.title}</Typography>
-                            <Button className={classes.button1}>Discuss this book with others!</Button>
+                            <Link to="/chatroom" style={{textDecoration: 'none'}}>
+                                <Button className={classes.button1}>Discuss this book with others!</Button>
+                            </Link>
                             </Box>
                             )
                     }else{return <></>}
@@ -231,7 +244,9 @@ fetch('http://localhost:3000/mybooks')
                         return (
                             <Box className={classes.container}>
                             <Typography variant="h6" className={classes.text}>{book.title}</Typography>
-                            <Button className={classes.button1}>Discuss this book with others!</Button>
+                            <Link to="/chatroom" style={{textDecoration: 'none'}}>
+                                <Button className={classes.button1}>Discuss this book with others!</Button>
+                            </Link>
                             </Box>
                             )
                     }else {return <></>}
@@ -243,7 +258,9 @@ fetch('http://localhost:3000/mybooks')
                         return (
                             <Box className={classes.container}>
                             <Typography variant="h6" className={classes.text}>{book.title}</Typography>
-                            <Button className={classes.button1}>Discuss this book with others!</Button>
+                            <Link to="/chatroom" style={{textDecoration: 'none'}}>
+                                <Button className={classes.button1}>Discuss this book with others!</Button>
+                            </Link>
                             </Box>
                             )
                     }else {return <></>}

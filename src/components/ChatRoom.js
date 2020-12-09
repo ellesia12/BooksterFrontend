@@ -6,6 +6,7 @@ import { TextField, Typography, Button, Grid, Box} from "@material-ui/core";
 import { makeStyles, withStyles } from "@material-ui/core/styles"
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
+import NavBar from "./NavBar";
 
 const InputField = withStyles({
   root:{
@@ -33,7 +34,8 @@ const useStyles = makeStyles(theme=>({
      textAlign: 'center',
      fontFamily: "'Abril Fatface', cursive",
      color: '#fcf3cf',
-     fontSize: '50px'
+     fontSize: '5rem',
+     letterSpacing: '4px'
 
    },
     
@@ -43,13 +45,15 @@ const useStyles = makeStyles(theme=>({
       borderColor: "white",
       borderRadius: "18px",
       fontFamily:"'Oswald', sans-serif",
+      fontSize: '25px',
       textTransform: "uppercase",
       textDecoration: "none",
       background: "#fcf3cf",
       padding: "10px",
       display: "inline-block",
       border: "none",
-      width: "20%"
+      
+      marginTop: '40px'
     },
     position: {
       top:"50%",
@@ -81,6 +85,9 @@ const useStyles = makeStyles(theme=>({
    select: {
      gutterBottom: "1em",
      borderRadius: '15px'
+   },
+   joinInput: {
+     width: '300px'
    }
   
 }))
@@ -102,13 +109,14 @@ const handleOpen = () => {
 
     return (
 <>
+<NavBar />
     <Box style={{background:"#718680", height:"100vh"}} >
       <Box className={classes.position}>
         <h1 className={classes.heading}>Join</h1>
         <Box>
           <InputField
            placeholder="Name"
-            className="joinInput"
+            className={classes.joinInput}
              type="text" 
              onChange={(event) => setName(event.target.value)} 
 

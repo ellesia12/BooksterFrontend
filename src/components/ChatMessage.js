@@ -24,6 +24,7 @@ const useStyles = makeStyles(theme=>({
     fontSize: "1.1em",
     wordWrap: "break-word",
     fontFamily: "'PT Sans', sans-serif",
+    
   },
   
   
@@ -31,7 +32,8 @@ const useStyles = makeStyles(theme=>({
     display: "flex",
     justifyContent: "flex-end",
     padding: "0 5%",
-    marginTop: "3px"
+    margin: "1px",
+    
   },
   justifyEnd: {
     
@@ -48,7 +50,8 @@ const useStyles = makeStyles(theme=>({
     alignItems: "center",
     fontFamily: "Helvetica",
     color: "black",
-    letterSpacing: "0.3px"
+    letterSpacing: "0.3px",
+    margin: '5px'
   },
 
   sendTextPadding: {

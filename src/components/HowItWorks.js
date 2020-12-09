@@ -10,9 +10,10 @@ const useStyles = makeStyles(theme => ({
    
     text: {
         textAlign: 'center',
-        fontFamily: "'PT Sans', sans-serif",
+        fontFamily: "'Abril Fatface', cursive",
         fontWeight: 'bold',
-        color: `#fcf3cf`
+        color: `#fcf3cf`,
+        letterSpacing: '4px'
     },
     boxPosition: {
         marginBottom: '10px'
@@ -51,7 +52,12 @@ const useStyles = makeStyles(theme => ({
           paddingBottom: "40px"
       },
       container: {
-          height: '100vh'
+          height: '70vh'
+      },
+      text2: {
+        color: `#fcf3cf`,
+        fontFamily:"'Oswald', sans-serif",
+        fontSize: '1.5rem'
       }
       
   
@@ -67,7 +73,7 @@ const classes = useStyles();
         <Box >
         
         <Box className={classes.box}>
-            <Typography className={classes.text} color="secondary" variant="h2"> HOW WE WORK</Typography>
+            <Typography className={classes.text} color="secondary" variant="h2"> How We Work...</Typography>
         </Box>
         
         </Box>
@@ -84,7 +90,7 @@ const classes = useStyles();
                     image={stepOne}
                 />
                 <CardContent>
-                    <Typography variant="body2" color="textSecondary" component="p" className={classes.text}>
+                    <Typography variant="body2" color="textSecondary" component="p" className={classes.text2}>
                         Sign up for Bookster using your email address, and add some fun facts about yourself.
                     </Typography> 
                 </CardContent>
@@ -96,8 +102,8 @@ const classes = useStyles();
                     image={stepTwo}
                 />
                 <CardContent>
-                    <Typography variant="body2" color="textSecondary" component="p" className={classes.text}>
-                        Search for you favorite books and add them into your very own bookshelf, where you can them organize them into categories.
+                    <Typography variant="body2" color="textSecondary" component="p" className={classes.text2}>
+                        Search for your favorite books and add them into your very own bookshelf, where you can them organize them into categories.
                     </Typography>
                 </CardContent>
             </Card>
@@ -108,7 +114,7 @@ const classes = useStyles();
                     image={stepThree}
                 />
                 <CardContent>
-                    <Typography variant="body2" color="textSecondary" component="p" className={classes.text}>
+                    <Typography variant="body2" color="textSecondary" component="p" className={classes.text2}>
                         Join different chat rooms and meet new people from around the world, while discussing your favorite books.
                     </Typography>
                 </CardContent>

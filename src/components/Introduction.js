@@ -4,11 +4,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import { NavLink } from 'react-router-dom';
 import IconButton from '@material-ui/core/IconButton';
 import Collapse from '@material-ui/core/Collapse';
-
-
-
-
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import home from '../Images/home.png'
+
 
 const useStyles = makeStyles(theme=>({
     
@@ -24,16 +22,18 @@ const useStyles = makeStyles(theme=>({
         display: 'flex',
         justifyContent: 'center',
         textAlign: 'center',
-        
+       
 
     },
 
     button: {
         fontFamily: "'Oswald', sans-serif",
         fontWeight: 'bold',
-        paddingTop: '20px',
         textDecoration: 'none',
-        fontSize: '2rem',
+        fontSize: '2.5rem',
+        marginTop: '-40px',
+        marginBottom: '20px',
+        color: '#b2837a'
     },
     navLink: {
         textDecoration: 'none'
@@ -50,7 +50,8 @@ const useStyles = makeStyles(theme=>({
         fontWeight: 'bold',
         color: '#fcf3cf',
         paddingBottom: '20px',
-        fontSize: '6rem'
+        fontSize: '7rem',
+       letterSpacing: '4px'
 
     },
     textAndButton: {
@@ -64,7 +65,8 @@ const useStyles = makeStyles(theme=>({
         color: '#fcf3cf',
         alignContent: 'center',
         justifyContent: 'center',
-        display: 'flex'
+        display: 'flex',
+        fontFamily: "'PT Sans', sans-serif",
     },
     quoteBox: {
         width: '75%',
@@ -97,6 +99,21 @@ const useStyles = makeStyles(theme=>({
     image: {
        marginRight: '100px'
 
+    },
+    pic: {
+        width: '625px',
+        paddingRight: '50px',
+        marginTop:'20px'
+    },
+    headingandtext: {
+        marginTop: '40px'
+    },
+    signandquote: {
+        display: 'flex',
+        flexDirection: 'column'
+    },
+    pink: {
+        color: '#b2837a'
     }
 }))
 
@@ -115,23 +132,22 @@ return(
 <Collapse in={checked} {...(checked ? { timeout: 1000 } : {})} 
 collapsedHeight={50}>
 <Box className={classes.fix}>
-<Box className={classes.textAndButton}>
-   
-   
-    
-    <Box>
-        <Typography variant="h2" className={classes.header}>Bookster.</Typography>
+<img className={classes.pic} src={home} alt="ppicture" />
+<Box className={classes.textAndButton}> 
+    <Box className={classes.headingandtext}>
+        <Typography variant="h2" className={classes.header}>Bookster<span className={classes.pink}>.</span></Typography>
         <Typography variant="h5" className={classes.text}>
         Create your own book club today and connect 
         <br />
         with friends and make new ones from anywhere in the world!
-        </Typography>
-</Box>
+        </Typography> 
+    </Box>
+   
 </Box>
 </Box>
  
-
-    <Box className={classes.buttonPosition}>
+<Box className={classes.signandquote} >
+<Box className={classes.buttonPosition}>
         <NavLink to='/register' className={classes.navLink}>
             <Button className={classes.button} >
             Sign up
@@ -145,6 +161,7 @@ collapsedHeight={50}>
 <IconButton>
     <ExpandMoreIcon color="white" className={classes.arrow}/>
 </IconButton>
+</Box>
 </Box>
 </Collapse>
 </Box>
