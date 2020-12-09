@@ -22,7 +22,8 @@ const useStyles = makeStyles(theme=>({
     letterSpacing: "0",
     float: "left",
     fontSize: "1.1em",
-    wordWrap: "break-word"
+    wordWrap: "break-word",
+    fontFamily: "'PT Sans', sans-serif",
   },
   
   
