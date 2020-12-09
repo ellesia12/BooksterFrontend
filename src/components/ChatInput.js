@@ -28,7 +28,7 @@ import { TextField, Button, Box } from '@material-ui/core';
  
     },
     button: {
-        marginTop: "1rem",
+        marginTop: "10px",
         color: "#C38D9E",
         borderColor: "white",
         borderRadius: "18px",
@@ -36,7 +36,7 @@ import { TextField, Button, Box } from '@material-ui/core';
         textTransform: "uppercase",
         textDecoration: "none",
         background: "#fcf3cf",
-        padding: "20px",
+        padding: "10px",
         display: "inline-block",
         border: "none",
         width: "20%"
