@@ -25,9 +25,6 @@ const useStyles = makeStyles(theme=>({
     wordWrap: "break-word"
   },
   
-  messageText: {
-    verticalAlign: "middle"
-  },
   
   messageContainer: {
     display: "flex",
@@ -60,23 +57,17 @@ const useStyles = makeStyles(theme=>({
   paddingLeft: "10px"
 }
 
-  
-
-  
 }))
 
 const ChatMessage = ({ message: { text, user }, name }) => {
   let isSentByCurrentUser = false;
   const classes = useStyles();
-  // console.log(user)
-
-
-console.log(user)
+   console.log(user)
 
 
 const trimmedName = name.trim().toLowerCase();
 
-console.log(trimmedName)
+
 
   if(user === name) {
     isSentByCurrentUser = true;

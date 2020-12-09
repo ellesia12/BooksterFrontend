@@ -61,7 +61,7 @@ const ChatRoom = () => {
 const classes = useStyles();
 
 const [ name, setName ] = useState('');
-const [ room, setRoom ] = useState('');
+const [ room, setRoom ] = useState({});
 
 
     return (
@@ -79,11 +79,14 @@ const [ room, setRoom ] = useState('');
              />
         </Box>
         <Box>
-          <InputField
-           placeholder="Room"
-            className="joinInput mt-20"
-             type="text"
-              onChange={(event) => setRoom(event.target.value)} />
+          <select 
+              onChange={event => setRoom(event.target.value)} >
+            <option value='Classics'>Classics</option>
+            <option value='Fantasy'>Fantasy</option>
+            <option value='Romance'>Romance</option>
+            <option value='Magic-Realism'>Magic Realism</option>
+            <option value='Sci-Fi'>Sci-Fi</option>
+          </select>
         </Box>
       <Box className={classes.buttonPosition}>
         <Link onClick={e => (!name || !room) ? e.preventDefault() : null} to={`/chat?name=${name}&room=${room}`}>
