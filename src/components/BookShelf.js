@@ -3,11 +3,10 @@ import { makeStyles } from "@material-ui/core/styles"
 
 import {  Typography, Grid, Box} from "@material-ui/core";
 import { Card, CardMedia,  CardActionArea,  Button  } from "@material-ui/core";
-import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-
+import NavBar from './NavBar';
 // import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 //here add the fetch for getting the books by user from the data base and then display them
 
@@ -27,10 +26,17 @@ const useStyles = makeStyles(theme=>({
     },
     header: {
         textAlign: "center",
-        textTransform:"uppercase",
         marginBottom:"30px",
-        fontFamily: "font1",
-        color: '#fcf3cf'
+        fontFamily: "'Abril Fatface', cursive",
+        color: '#fcf3cf',
+        fontSize: '5rem'
+    },
+    header2: {
+        textAlign: "center",
+        marginBottom:"30px",
+        fontFamily: "'Abril Fatface', cursive",
+        color: '#fcf3cf',
+        fontSize: '4rem'
     },
     word: {
         fontFamily:"'Oswald', sans-serif",
@@ -164,6 +170,7 @@ fetch('http://localhost:3000/mybooks')
 
     return (
     <>
+    <NavBar />
     <Box component="div" style={{background:"#718680", height:"100vh", paddingTop: '100px'}}>
         <Grid container justify="center" className={classes.grid}>
             <Typography variant="h2" className={classes.header}>My Bookshelf</Typography>
@@ -207,7 +214,7 @@ fetch('http://localhost:3000/mybooks')
             </Box>
             <Box className={classes.cat} style={{background:"#718680", height:"100vh", paddingTop: '50px'}}>
                 <Box>
-                    <Typography variant="h3" className={classes.header}>To Read</Typography>
+                    <Typography variant="h3" className={classes.header2}>To Read</Typography>
                     <Typography>{myBooks && myBooks.map(book=>{if(book.status === 'to read'){
                         return (
                             <Box className={classes.container}>
@@ -219,7 +226,7 @@ fetch('http://localhost:3000/mybooks')
                     })}</Typography>
                 </Box>
                 <Box>
-                    <Typography variant="h3" className={classes.header}>Reading</Typography>
+                    <Typography variant="h3" className={classes.header2}>Reading</Typography>
                     <Typography>{myBooks && myBooks.map(book=>{if(book.status === 'reading'){
                         return (
                             <Box className={classes.container}>
@@ -231,7 +238,7 @@ fetch('http://localhost:3000/mybooks')
                     })}</Typography>
                 </Box>
                 <Box>
-                    <Typography variant="h3" className={classes.header}>Have Read</Typography>
+                    <Typography variant="h3" className={classes.header2}>Have Read</Typography>
                     <Typography>{myBooks && myBooks.map(book=>{if(book.status === 'have read'){
                         return (
                             <Box className={classes.container}>

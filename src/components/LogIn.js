@@ -6,6 +6,7 @@ import Profile from "./Profile";
 import { Redirect, Link, NavLink, useHistory } from "react-router-dom";
 import BookShelf from "./BookShelf";
 import Cookies from "js-cookie"
+import NavBar from  "./NavBar"
 
 const InputField = withStyles({
     root:{
@@ -43,15 +44,15 @@ const useStyles = makeStyles(theme=>({
     },
     header: {
         textAlign: "center",
-        textTransform:"uppercase",
         marginBottom:"30px",
-        fontFamily: "font1",
+        fontFamily: "'Abril Fatface', cursive",
         color:"#fcf3cf",
-        fontSize: '3.5rem'
+        fontSize: '4rem'
     },
     word: {
         fontFamily:"'Oswald', sans-serif",
-        alignText: 'center'
+        textAlign: 'center',
+        fontSize: '1.6rem',
     }
 }))
 
@@ -148,6 +149,7 @@ useEffect(()=> {
 
     return (
         <>
+        <NavBar />
             <Box component="div" style={{background:"#718680", height:"100vh"}}>
                 <Grid container justify="center">
                     <Box component="form"  className={classes.form}>

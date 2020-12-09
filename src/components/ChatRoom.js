@@ -61,7 +61,7 @@ const ChatRoom = () => {
 const classes = useStyles();
 
 const [ name, setName ] = useState('');
-const [ room, setRoom ] = useState({});
+const [ room, setRoom ] = useState('Classics');
 
 
     return (

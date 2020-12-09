@@ -29,7 +29,7 @@ import "../App.css";
 
 const useStyles = makeStyles(theme =>({
     nav:{
-        /* backgroundColor: "black" */
+        backgroundColor:"#718680",
         background: 'none',
         height: "65px",
     },

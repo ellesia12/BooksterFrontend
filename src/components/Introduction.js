@@ -2,12 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Typography, Button, Box } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { NavLink } from 'react-router-dom';
-import bookshelf from "../Images/idealbookshelf.jpg";
-
 import IconButton from '@material-ui/core/IconButton';
 import Collapse from '@material-ui/core/Collapse';
 
-import image from '../Images/pngegg.png';
+
 
 
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
