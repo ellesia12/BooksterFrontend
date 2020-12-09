@@ -40,14 +40,14 @@ const useStyles = makeStyles(theme=>({
     },
     header: {
         textAlign: "center",
-        
-        marginBottom:"30px",
+        marginBottom:"40px",
         fontFamily: "'Abril Fatface', cursive",
-        color: '#fcf3cf',
-        fontSize: '3.5rem'
+        color:"#fcf3cf",
+        fontSize: '4rem'
     },
     text: {
         fontFamily: "'Oswald', sans-serif",
+
         
     },
     word: {

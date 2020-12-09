@@ -11,7 +11,7 @@ import NavBar from  "./NavBar"
 const InputField = withStyles({
     root:{
         "& label.Mui-focused":{
-            color: "#DB5CA2"
+            color: "black"
         },
         "& label":{
             color: "5CDB95",
@@ -35,16 +35,17 @@ const useStyles = makeStyles(theme=>({
         position: "absolute"
     },
     button: {
-        marginTop: "1rem",
+        margin: "1rem",
         color: "black",
         borderColor: "white",
         borderRadius: "18px",
         fontFamily:"'Oswald', sans-serif",
-        backgroundColor: '#fcf3cf'
+        backgroundColor: '#fcf3cf',
+       
     },
     header: {
         textAlign: "center",
-        marginBottom:"30px",
+        marginBottom:"40px",
         fontFamily: "'Abril Fatface', cursive",
         color:"#fcf3cf",
         fontSize: '4rem'
@@ -183,9 +184,16 @@ useEffect(()=> {
                         {userInfo ? 
                         <>
                         <Typography className={classes.word}>Successful login! Review your profile below {userInfo.first_name}, or go to your Bookshelf </Typography> 
+                        <Link to="/bookshelf" style={{textDecoration: 'none'}}>
                         <Button   variant="contained" fullWidth={true} className={classes.button} >
                                 Go to your bookshelf
                             </Button>
+                        </Link>
+                        <Link to="/search" style={{textDecoration: 'none'}}>
+                        <Button   variant="contained" fullWidth={true} className={classes.button} >
+                                Search for a book
+                            </Button>
+                        </Link>
                         <Profile userInfo={userInfo}/>
                         </>
                         :<> 

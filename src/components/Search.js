@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import { TextField, Typography, Button, Grid, Box} from "@material-ui/core";
 
-
+import NavBar from './NavBar';
 import BookCard from "./BookCard"
 
 
@@ -53,10 +53,10 @@ const useStyles = makeStyles(theme=>({
     },
     header: {
         textAlign: "center",
-        textTransform:"uppercase",
-        marginBottom:"30px",
-        fontFamily:"font1",
-        color:"#fcf3cf"
+        marginBottom:"40px",
+        fontFamily: "'Abril Fatface', cursive",
+        color:"#fcf3cf",
+        fontSize: '4rem'
     },
     text:{
         fontFamily: "'Oswald', sans-serif",
@@ -128,6 +128,7 @@ const handleSubmit = (e) =>{
 
     return(
         <>
+        <NavBar />
         <Box>
             <Box component="div" style={{background:"#718680", height:"100vh"}}>
                 <Grid container justify="center">
