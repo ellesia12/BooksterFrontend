@@ -72,9 +72,9 @@ const Register = () =>{
         first_name: '',
         surname: '',
         email: '',
-        password: '',
         bio: '',
-        fav_book: ''
+        fav_book: '',
+        password: '',
     });
 
 const postOptions = {
@@ -130,7 +130,7 @@ const handleChange = (e) =>{
                             margin="dense"
                             size="medium"
                             name="surname"
-                            value={registerData.surname}
+                            value= {registerData.surname}
                             onChange={handleChange}
                         />
                          <br />
@@ -150,7 +150,7 @@ const handleChange = (e) =>{
                             margin="dense"
                             size="medium"
                             name="password"
-                            value={registerData.password}
+                            value={registerData.hashedPassword}
                             onChange={handleChange}
                             type="password"
                         />
